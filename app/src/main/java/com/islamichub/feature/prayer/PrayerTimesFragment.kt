@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.islamichub.R
 import com.islamichub.databinding.FragmentPrayerTimesBinding
 import com.islamichub.databinding.ItemPrayerTimeBinding
+import com.islamichub.feature.home.PrayerState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

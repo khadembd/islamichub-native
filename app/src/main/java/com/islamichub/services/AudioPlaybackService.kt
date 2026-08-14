@@ -41,9 +41,11 @@ class AudioPlaybackService : MediaSessionService() {
                     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
             }
-            mediaSession = MediaSession.Builder(this, player)
-                .setSessionActivity(pendingIntent)
-                .build()
+            val builder = MediaSession.Builder(this, player)
+            if (pendingIntent != null) {
+                builder.setSessionActivity(pendingIntent)
+            }
+            mediaSession = builder.build()
         } catch (e: Exception) {
             // Defensive: MediaSession creation should never crash app
         }

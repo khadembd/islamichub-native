@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.core.content.ContextCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.Player
@@ -20,8 +21,8 @@ import com.islamichub.core.ui.ContentCardItem
 import com.islamichub.databinding.FragmentGenericListBinding
 import com.islamichub.services.AudioPlaybackService
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.guava.await
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 /**
  * AudioFragment — plays Namaz MP3 audio using Media3 + MediaSession.
@@ -60,13 +61,13 @@ class AudioFragment : Fragment() {
     private fun initializeController() {
         val sessionToken = SessionToken(requireContext(), ComponentName(requireContext(), AudioPlaybackService::class.java))
         controllerFuture = MediaController.Builder(requireContext(), sessionToken).buildAsync()
-        viewLifecycleOwner.lifecycleScope.launch {
+        controllerFuture?.addListener({
             try {
-                controller = controllerFuture?.await()
+                controller = controllerFuture?.get()
             } catch (e: Exception) {
                 // Defensive: controller init may fail in some edge cases
             }
-        }
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
     private fun playAudio(rawResName: String) {

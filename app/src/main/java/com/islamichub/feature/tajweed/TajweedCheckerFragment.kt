@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.islamichub.R
 import com.islamichub.databinding.FragmentTajweedBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
