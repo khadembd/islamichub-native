@@ -8,6 +8,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.serialization")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -15,7 +16,10 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.islamichub"
+        // applicationId matches the Firebase google-services.json package_name
+        // (`com.islamic.islam`). Namespace stays `com.islamichub` for Kotlin
+        // packages — Android allows the two to differ.
+        applicationId = "com.islamic.islam"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -153,15 +157,13 @@ dependencies {
     // Splashscreen API
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    // NOTE: Firebase Android SDK is intentionally NOT enabled in v1.
-    // The original source's google-services.json is bound to applicationId
-    // `com.islamic.islam`; our native app uses `com.islamichub`. To enable
-    // Firebase, generate a new google-services.json for `com.islamichub`,
-    // drop it into app/, uncomment the lines below, and add the
-    // `com.google.gms.google-services` plugin at the top of this file.
-    // implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
-    // implementation("com.google.firebase:firebase-firestore-ktx")
-    // implementation("com.google.firebase:firebase-analytics-ktx")
+    // Firebase — using the original google-services.json from the source
+    // (package_name: `com.islamic.islam`). Our applicationId is set to match.
+    // This enables Firestore + Analytics + FCM.
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     // Tests
     testImplementation("junit:junit:4.13.2")

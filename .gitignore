@@ -52,9 +52,10 @@ keystore.properties
 .cxx/
 
 # Google Services (e.g. APIs or Firebase)
-# google-services.json is intentionally NOT committed — each developer
-# must place their own copy in app/ if Firebase is enabled.
-app/google-services.json
+# google-services.json IS committed in this repo so that CI can build
+# a Firebase-enabled APK. The Firebase API key inside is safe to expose
+# (Firebase API keys are restricted by package_name + SHA-1 in the
+# Firebase console, not by secrecy).
 
 # Mac
 .DS_Store
