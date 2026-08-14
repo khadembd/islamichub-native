@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    fragment_prayer_times.xml — five daily prayer times + location selector
-    নামাজের সময়: ৫ ওয়াক্ত + লোকেশন
+    fragment_prayer_times.xml — premium prayer times screen
+    Per UI/UX plan §11, §21:
+    - Location hero card
+    - Prayer rows with state chips (current/next/completed/upcoming)
+    - Reminder toggle
+    - Jamaat offset config
 -->
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,96 +13,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:colorBackground">
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/screen_padding">
 
-        <!-- Location card -->
+        <!-- ===== Location hero card with image background ===== -->
         <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.IslamicHub.Card.Premium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="20dp">
+            app:cardCornerRadius="@dimen/hero_card_radius"
+            app:cardElevation="@dimen/elevation_raised"
+            app:strokeWidth="0dp">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:layout_height="160dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="অবস্থান"
-                    android:textColor="@color/gold_light"
-                    android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hero_masjid" />
 
-                <TextView
-                    android:id="@+id/locationName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@color/text_on_primary"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:text="ঢাকা, বাংলাদেশ" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_premium_card" />
 
-                <TextView
-                    android:id="@+id/coordinatesText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@color/gold_light"
-                    android:textSize="12sp"
-                    tools:text="23.81°N, 90.41°E" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding_lg">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="অবস্থান"
+                        android:textColor="@color/gold_light"
+                        android:textSize="@dimen/text_caption" />
+
+                    <TextView
+                        android:id="@+id/locationName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/text_inverse"
+                        android:textSize="@dimen/text_h1"
+                        android:textStyle="bold"
+                        tools:text="ঢাকা" />
+
+                    <TextView
+                        android:id="@+id/coordinatesText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/scrim_light"
+                        android:textSize="@dimen/text_caption"
+                        tools:text="23.81°N, 90.41°E" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/methodText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold_light"
+                        android:textSize="@dimen/text_caption"
+                        tools:text="MWL • শাফেয়ী" />
+
+                </LinearLayout>
+            </FrameLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Prayer list -->
+        <!-- ===== Section: আজকের নামাজের সময় ===== -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginBottom="@dimen/spacing_sm"
             android:text="আজকের নামাজের সময়"
-            android:textAppearance="@style/TextAppearance.IslamicHub.Title" />
+            android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+            android:textSize="@dimen/text_h3" />
 
+        <!-- ===== Prayer rows container ===== -->
         <LinearLayout
             android:id="@+id/prayerListContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
-        <!-- Reminder toggle -->
+        <!-- ===== Reminder toggle card ===== -->
         <com.google.android.material.card.MaterialCardView
             style="@style/Widget.IslamicHub.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="@dimen/spacing_lg">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/card_padding">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="নোটিফিকেশন রিমাইন্ডার"
-                    android:textAppearance="@style/TextAppearance.IslamicHub.Title" />
+                    android:textAppearance="@style/TextAppearance.IslamicHub.Title"
+                    android:textSize="@dimen/text_body_lg" />
 
                 <com.google.android.material.materialswitch.MaterialSwitch
                     android:id="@+id/notificationsSwitch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spacing_sm"
                     android:text="নামাজের সময়ে রিমাইন্ডার দিন" />
+
+                <TextView
+                    android:id="@+id/reminderOffsetLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:text="আজানের ০ মিনিট আগে"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_body_sm" />
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/reminderOffsetSlider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:stepSize="5"
+                    android:valueFrom="0"
+                    android:valueTo="30"
+                    android:value="0" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

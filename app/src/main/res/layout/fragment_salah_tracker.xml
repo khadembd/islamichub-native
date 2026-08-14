@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_salah_tracker.xml — Salah tracker with weekly view + streak
+    Per UI/UX plan §12:
+    - Streak hero
+    - Weekly view (last 7 days)
+    - Today's prayers with mark complete toggle
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_padding">
+
+        <!-- Streak hero card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.IslamicHub.Card.Premium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/hero_card_radius">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding_lg">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/salah_streak"
+                    android:textColor="@color/gold_light"
+                    android:textSize="@dimen/text_caption"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/streakValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:textColor="@color/text_inverse"
+                    android:textSize="56sp"
+                    android:textStyle="bold"
+                    tools:text="৭" />
+
+                <TextView
+                    android:id="@+id/streakLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:text="দিন ধরে ধারাবাহিক"
+                    android:textColor="@color/scrim_light"
+                    android:textSize="@dimen/text_body" />
+
+                <TextView
+                    android:id="@+id/completedTodayLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:textColor="@color/gold_light"
+                    android:textSize="@dimen/text_body_sm"
+                    tools:text="আজ ৩/৫ নামাজ সম্পন্ন" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Today section header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginBottom="@dimen/spacing_sm"
+            android:text="আজকের নামাজ"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+            android:textSize="@dimen/text_h3" />
+
+        <!-- Today's prayers container -->
+        <LinearLayout
+            android:id="@+id/todayPrayersContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- Weekly view -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginBottom="@dimen/spacing_sm"
+            android:text="@string/salah_weekly_view"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+            android:textSize="@dimen/text_h3" />
+
+        <!-- Weekly grid (7 columns x 5 prayer rows) -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.IslamicHub.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/weeklyContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/card_padding">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="3" android:text="নামাজ" android:textStyle="bold" android:textColor="@color/text_secondary" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day1Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="শ" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day2Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="র" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day3Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="ম" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day4Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="ব" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day5Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="বৃ" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day6Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="শু" android:textSize="@dimen/text_caption" />
+                    <TextView android:id="@+id/day7Header" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:text="শ" android:textSize="@dimen/text_caption" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/weeklyRowsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:orientation="vertical" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

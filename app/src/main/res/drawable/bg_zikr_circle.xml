@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    bg_zikr_circle.xml — circular zikr counter gradient (lavender → dark)
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <gradient
+        android:type="radial"
+        android:gradientRadius="500"
+        android:centerX="0.5"
+        android:centerY="0.5"
+        android:startColor="@color/primary_light"
+        android:centerColor="@color/primary"
+        android:endColor="@color/primary_dark" />
+    <stroke android:width="2dp" android:color="@color/gold_light" />
+</shape>

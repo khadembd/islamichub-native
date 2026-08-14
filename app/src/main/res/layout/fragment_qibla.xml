@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    fragment_qibla.xml — Qibla compass screen
-    কিবলা কম্পাস: native SensorManager + FusedLocation
+    fragment_qibla.xml — immersive Qibla compass
+    Per UI/UX plan §20:
+    - QIBLA label
+    - Compass ring (rotates)
+    - Kaaba indicator (rotates to point to qibla)
+    - Bearing + distance text
+    - Status row
+    - All states (locating/permission/calibrating/ready/inaccurate)
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:colorBackground">
+    android:background="@drawable/bg_qibla_screen">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:padding="24dp">
+        android:padding="@dimen/spacing_xl">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:text="কিবলা"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Display"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_display"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/qiblaBearingLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
-            tools:text="কিবলা দিক: 245°" />
+            android:textColor="@color/gold"
+            android:textSize="@dimen/text_h1"
+            tools:text="২৪৫°" />
 
         <TextView
             android:id="@+id/qiblaDistanceLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:textAppearance="@style/TextAppearance.IslamicHub.Body"
-            tools:text="মক্কার দূরত্ব: 4,857 কিমি" />
+            android:textColor="@color/text_secondary"
+            tools:text="মক্কার দূরত্ব: ৪,৮৫৭ কিমি" />
 
-        <!-- Compass ring + Kaaba indicator -->
+        <!-- Compass -->
         <FrameLayout
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:layout_marginTop="32dp">
+            android:layout_width="@dimen/qibla_compass_size"
+            android:layout_height="@dimen/qibla_compass_size"
+            android:layout_marginTop="@dimen/spacing_2xl">
 
+            <!-- Compass ring (rotates opposite to device azimuth) -->
             <ImageView
                 android:id="@+id/compassRing"
                 android:layout_width="match_parent"
@@ -46,23 +66,33 @@
                 android:contentDescription="@string/cd_qibla_compass"
                 android:src="@drawable/compass_ring" />
 
+            <!-- Soft tinted circle behind ring -->
+            <View
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_gravity="center"
+                android:background="@drawable/bg_compass_inner" />
+
+            <!-- Kaaba indicator (rotates to point toward Qibla) -->
             <ImageView
                 android:id="@+id/kaabaIndicator"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
                 android:layout_gravity="center|top"
-                android:layout_marginTop="-8dp"
+                android:layout_marginTop="-4dp"
+                android:contentDescription="@null"
                 android:src="@drawable/ic_kaaba" />
 
+            <!-- Center label N (North) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="14dp"
                 android:text="N"
-                android:textColor="@color/emerald_primary"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="100dp" />
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_caption"
+                android:textStyle="bold" />
 
         </FrameLayout>
 
@@ -70,18 +100,21 @@
             android:id="@+id/compassStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textAppearance="@style/TextAppearance.IslamicHub.Body"
-            android:text="ফোন সমানভাবে ধরুন • উত্তর দিক চিহ্নিত করুন"
-            android:gravity="center" />
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:gravity="center"
+            android:text="কম্পাস প্রস্তুত"
+            android:textAppearance="@style/TextAppearance.IslamicHub.BodyLarge"
+            android:textColor="@color/text_secondary" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/calibrateButton"
-            style="@style/Widget.Material3.Button.TonalButton"
+            style="@style/Widget.IslamicHub.Button.Primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="ক্যালিব্রেট করুন" />
+            android:layout_marginTop="@dimen/spacing_lg"
+            android:text="ক্যালিব্রেট করুন"
+            app:icon="@drawable/ic_compass"
+            app:iconTint="@color/on_primary" />
 
     </LinearLayout>
 

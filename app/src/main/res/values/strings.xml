@@ -70,4 +70,102 @@
 
     <!-- Release notes -->
     <string name="version_label">Version %1$s</string>
+
+    <!-- Premium UI strings -->
+    <string name="greeting_morning">সকাল শুভেচ্ছা</string>
+    <string name="greeting_afternoon">অপরাহ্ণ শুভেচ্ছা</string>
+    <string name="greeting_evening">সন্ধ্যা শুভেচ্ছা</string>
+    <string name="greeting_night">রাত শুভেচ্ছা</string>
+    <string name="next_prayer_label">পরবর্তী নামাজ</string>
+    <string name="ends_in_label">শেষ হবে</string>
+    <string name="remaining_time_format">%1$02d:%2$02d:%3$02d</string>
+
+    <!-- Prayer state chips -->
+    <string name="state_current">চলমান</string>
+    <string name="state_next">পরবর্তী</string>
+    <string name="state_upcoming">আসছে</string>
+    <string name="state_completed">সম্পন্ন</string>
+
+    <!-- Quick actions -->
+    <string name="quick_quran">কুরআন</string>
+    <string name="quick_hadith">হাদিস</string>
+    <string name="quick_dua">দোয়া</string>
+    <string name="quick_qibla">কিবলা</string>
+    <string name="quick_zikr">জিকির</string>
+    <string name="quick_namaz">নামাজ</string>
+
+    <!-- Salah tracker -->
+    <string name="salah_tracker_title">নামাজ ট্র্যাকার</string>
+    <string name="salah_streak">ধারাবাহিকতা</string>
+    <string name="salah_completed_today">আজ %1$d/৫ নামাজ সম্পন্ন</string>
+    <string name="salah_streak_days">%1$d দিন ধরে ধারাবাহিক</string>
+    <string name="salah_mark_done">সম্পন্ন হিসেবে চিহ্নিত করুন</string>
+    <string name="salah_mark_undone">পূর্বাবস্থায় ফেরান</string>
+    <string name="salah_weekly_view">সাপ্তাহিক ভিউ</string>
+
+    <!-- App lock -->
+    <string name="app_lock_title">অ্যাপ লক</string>
+    <string name="app_lock_prompt">অ্যাপ খুলতে যাচাই করুন</string>
+    <string name="app_lock_subtitle">বায়োমেট্রিক দিয়ে অ্যাপ আনলক করুন</string>
+    <string name="app_lock_use_pin">পিন ব্যবহার করুন</string>
+    <string name="app_lock_cancel">বাতিল</string>
+
+    <!-- AI Scholar -->
+    <string name="ai_scholar_title">এআই স্কলার</string>
+    <string name="ai_scholar_hint">ইসলামিক প্রশ্ন করুন…</string>
+    <string name="ai_scholar_disclaimer">এআই উত্তর সর্বদা আলেমদের সাথে যাচাই করুন</string>
+    <string name="ai_scholar_send">পাঠান</string>
+    <string name="ai_scholar_thinking">ভাবছে…</string>
+
+    <!-- Vision scanner -->
+    <string name="scanner_title">ভিশন স্ক্যানার</string>
+    <string name="scanner_hint">কুরআনের আয়াত বা ইসলামিক টেক্সট স্ক্যান করুন</string>
+    <string name="scanner_capture">ক্যাপচার</string>
+    <string name="scanner_retake">পুনরায়</string>
+    <string name="scanner_processing">বিশ্লেষণ করা হচ্ছে…</string>
+
+    <!-- Tajweed -->
+    <string name="tajweed_title">তাজবিদ চেকার</string>
+    <string name="tajweed_record">রেকর্ড করুন</string>
+    <string name="tajweed_stop">থামান</string>
+    <string name="tajweed_listening">শুনছে…</string>
+
+    <!-- Audio player -->
+    <string name="audio_play">চালান</string>
+    <string name="audio_pause">বিরতি</string>
+    <string name="audio_next">পরবর্তী</string>
+    <string name="audio_previous">পূর্ববর্তী</string>
+    <string name="audio_repeat">পুনরাবৃত্তি</string>
+
+    <!-- Daily content -->
+    <string name="daily_ayah">আজকের আয়াত</string>
+    <string name="daily_hadith">আজকের হাদিস</string>
+    <string name="daily_dua">আজকের দোয়া</string>
+
+    <!-- Settings sections -->
+    <string name="settings_account">অ্যাকাউন্ট</string>
+    <string name="settings_prayer">নামাজ</string>
+    <string name="settings_appearance">উপস্থিতি</string>
+    <string name="settings_privacy">গোপনীয়তা ও নিরাপত্তা</string>
+    <string name="settings_about">পরিচিতি</string>
+    <string name="settings_text_size">টেক্সট সাইজ</string>
+    <string name="settings_arabic_font">আরবি ফন্ট</string>
+
+    <!-- Error states -->
+    <string name="error_load_failed">তথ্য লোড করা যায়নি</string>
+    <string name="error_no_data">কোনো তথ্য নেই</string>
+    <string name="error_no_permission">অনুমতি প্রয়োজন</string>
+    <string name="error_no_network">ইন্টারনেট সংযোগ নেই</string>
+    <string name="error_location">লোকেশন পাওয়া যায়নি</string>
+    <string name="error_sensor">সেন্সর উপলব্ধ নয়</string>
+
+    <!-- Empty states -->
+    <string name="empty_bookmarks">কোনো বুকমার্ক নেই</string>
+    <string name="empty_search">কিছু পাওয়া যায়নি</string>
+    <string name="empty_salah">এই সপ্তাহে কোনো নামাজ ট্র্যাক করা হয়নি</string>
+    <string name="empty_zikr">এখনো কোনো জিকির গণনা হয়নি</string>
+
+    <!-- Admin -->
+    <string name="admin_title">অ্যাডমিন প্যানেল</string>
+
 </resources>

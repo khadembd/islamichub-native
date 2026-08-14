@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    fragment_home.xml — home screen with feature grid + today's prayer card
-    হোম স্ক্রিন: আজকের নামাজের সময় + ফিচার গ্রিড
+    fragment_home.xml — premium home screen
+    Per UI/UX plan §9-10:
+    - Greeting / Date
+    - Current Prayer Hero (image bg + gradient overlay + countdown timer)
+    - 5-Prayer Progress (compact row)
+    - Quick Actions (2x3 grid)
+    - Daily Ayah card
+    - Daily Hadith card
 -->
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,119 +16,305 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="?android:colorBackground">
+    android:background="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_xl">
 
-        <!-- Premium hero banner -->
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.IslamicHub.Card.Premium"
+        <!-- ===== Hero card with image background + gradient overlay ===== -->
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="24dp">
+            android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/spacing_md">
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/heroCard"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="24dp">
+                android:layout_height="@dimen/hero_card_height"
+                app:cardCornerRadius="@dimen/hero_card_radius"
+                app:cardElevation="@dimen/elevation_raised"
+                app:cardPreventCornerOverlap="false"
+                app:strokeWidth="0dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name"
-                    android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
-                    android:textColor="@color/text_on_primary" />
+                <ImageView
+                    android:id="@+id/heroImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/cd_app_logo"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/hero_premium_masjid" />
 
-                <TextView
-                    android:id="@+id/todayDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="@color/gold_light"
-                    android:textSize="14sp"
-                    tools:text="১৪ আগস্ট, ২০২৬" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_premium_card" />
 
-                <TextView
-                    android:id="@+id/nextPrayerLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="পরবর্তী নামাজ"
-                    android:textColor="@color/text_on_primary"
-                    android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/card_padding_lg">
 
-                <TextView
-                    android:id="@+id/nextPrayerName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@color/gold_light"
-                    android:textSize="32sp"
-                    android:textStyle="bold"
-                    tools:text="আসর • ৫:২৩ অপরাহ্ণ" />
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gold_light"
+                        android:textSize="@dimen/text_caption"
+                        android:textStyle="bold"
+                        tools:text="সকাল শুভেচ্ছা" />
 
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:id="@+id/todayDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/scrim_light"
+                        android:textSize="@dimen/text_caption"
+                        tools:text="১৪ আগস্ট, ২০২৬" />
 
-        <!-- Feature grid section header -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/nextPrayerLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next_prayer_label"
+                        android:textColor="@color/scrim_light"
+                        android:textSize="@dimen/text_caption"
+                        android:alpha="0.85" />
+
+                    <TextView
+                        android:id="@+id/nextPrayerName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="@color/text_inverse"
+                        android:textSize="@dimen/text_display"
+                        android:textStyle="bold"
+                        tools:text="আসর" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="4dp">
+
+                        <TextView
+                            android:id="@+id/nextPrayerTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/gold_light"
+                            android:textSize="@dimen/text_body_lg"
+                            android:textStyle="bold"
+                            tools:text="৫:২৩ অপরাহ্ণ" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_md"
+                            android:text="•"
+                            android:textColor="@color/scrim_light" />
+
+                        <TextView
+                            android:id="@+id/countdownText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_md"
+                            android:textColor="@color/scrim_light"
+                            android:textSize="@dimen/text_body_sm"
+                            tools:text="শেষ হবে ২:৩৪:৫৬" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </FrameLayout>
+
+        <!-- ===== 5-Prayer Progress Row ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:weightSum="5">
+
+            <include android:id="@+id/prayerFajr"  layout="@layout/item_prayer_dot" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+            <include android:id="@+id/prayerDhuhr" layout="@layout/item_prayer_dot" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+            <include android:id="@+id/prayerAsr"   layout="@layout/item_prayer_dot" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+            <include android:id="@+id/prayerMaghrib" layout="@layout/item_prayer_dot" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+            <include android:id="@+id/prayerIsha"  layout="@layout/item_prayer_dot" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <!-- ===== Quick Actions section header ===== -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="বিভাগসমূহ"
-            android:textAppearance="@style/TextAppearance.IslamicHub.Title" />
+            android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginBottom="@dimen/spacing_sm"
+            android:text="দ্রুত অ্যাক্সেস"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+            android:textSize="@dimen/text_h3" />
 
-        <!-- Feature grid -->
+        <!-- ===== Quick Actions grid ===== -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/featureGrid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clipToPadding="false"
-            android:padding="8dp"
+            android:paddingStart="@dimen/spacing_sm"
+            android:paddingEnd="@dimen/spacing_sm"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            app:spanCount="3"
             tools:listitem="@layout/item_feature" />
 
-        <!-- Daily Ayah card -->
+        <!-- ===== Daily Ayah card ===== -->
         <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.IslamicHub.Card"
+            style="@style/Widget.IslamicHub.Card.Elevated"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp">
+            android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="আজকের আয়াত"
-                    android:textAppearance="@style/TextAppearance.IslamicHub.Title" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_sm"
+                        android:layout_height="@dimen/icon_sm"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_quran"
+                        app:tint="@color/gold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:text="@string/daily_ayah"
+                        android:textAppearance="@style/TextAppearance.IslamicHub.Subtitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dailyAyahRef"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="@dimen/text_caption"
+                        tools:text="সূরা আত-তালাক: ২-৩" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/dailyAyahArabic"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:textAppearance="@style/TextAppearance.IslamicHub.Arabic"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.ArabicSmall"
                     tools:text="وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا" />
 
                 <TextView
                     android:id="@+id/dailyAyahTranslation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/spacing_sm"
                     android:textAppearance="@style/TextAppearance.IslamicHub.Bengali"
                     tools:text="যে আল্লাহকে ভয় করে, তিনি তার জন্য বের হবার পথ করে দেন।" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== Daily Hadith card ===== -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.IslamicHub.Card.Elevated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginTop="@dimen/spacing_md"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_sm"
+                        android:layout_height="@dimen/icon_sm"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_book"
+                        app:tint="@color/gold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_weight="1"
+                        android:text="@string/daily_hadith"
+                        android:textAppearance="@style/TextAppearance.IslamicHub.Subtitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/dailyHadithRef"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_tertiary"
+                        android:textSize="@dimen/text_caption"
+                        tools:text="সহীহ বুখারী: ১" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dailyHadithArabic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.ArabicSmall"
+                    tools:text="إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ" />
+
+                <TextView
+                    android:id="@+id/dailyHadithTranslation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.Bengali"
+                    tools:text="নিশ্চয়ই আমল নিয়তের ওপর নির্ভরশীল।" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

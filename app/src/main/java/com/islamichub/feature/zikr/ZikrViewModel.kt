@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -33,11 +34,22 @@ class ZikrViewModel @Inject constructor(
     private val _count = MutableStateFlow(0)
     val count: StateFlow<Int> = _count.asStateFlow()
 
-    val dailyTotal: StateFlow<Int> = dao.observeDailyTotal(_currentType.value.name, LocalDate.now().toString())
+    // Daily + grand totals observe Room flow, switching when type changes
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    val dailyTotal: StateFlow<Int> = _currentType
+        .flatMapLatest { type -> dao.observeDailyTotal(type.name, LocalDate.now().toString()) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
 
-    val grandTotal: StateFlow<Int> = dao.observeGrandTotal(_currentType.value.name)
+    @OptIn(kotlinx.coroutines.ExperimentalCoroutinesApi::class)
+    val grandTotal: StateFlow<Int> = _currentType
+        .flatMapLatest { type -> dao.observeGrandTotal(type.name) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), 0)
+
+    fun setZikrType(type: ZikrType) {
+        if (_count.value > 0) saveSession()
+        _count.value = 0
+        _currentType.value = type
+    }
 
     fun increment() {
         _count.value = _count.value + 1
@@ -51,25 +63,21 @@ class ZikrViewModel @Inject constructor(
         _count.value = 0
     }
 
-    fun cycleZikrType() {
-        if (_count.value > 0) saveSession()
-        _count.value = 0
-        val all = ZikrType.entries
-        val next = all[(all.indexOf(_currentType.value) + 1) % all.size]
-        _currentType.value = next
-    }
-
     private fun saveSession() {
         viewModelScope.launch {
-            dao.insert(
-                ZikrSessionEntity(
-                    zikrType = _currentType.value.name,
-                    count = _count.value,
-                    target = _currentType.value.target,
-                    date = LocalDate.now().toString(),
-                    completedAt = System.currentTimeMillis()
+            try {
+                dao.insert(
+                    ZikrSessionEntity(
+                        zikrType = _currentType.value.name,
+                        count = _count.value,
+                        target = _currentType.value.target,
+                        date = LocalDate.now().toString(),
+                        completedAt = System.currentTimeMillis()
+                    )
                 )
-            )
+            } catch (e: Exception) {
+                // Defensive: database insert should never crash zikr counter
+            }
         }
     }
 }

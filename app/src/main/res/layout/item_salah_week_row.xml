@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_salah_week_row.xml — one prayer's 7-day progress row -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/spacing_xs"
+    android:weightSum="8">
+
+    <TextView
+        android:id="@+id/prayerLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_body_sm"
+        android:textStyle="bold" />
+
+    <ImageView android:id="@+id/d1" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+    <ImageView android:id="@+id/d2" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+    <ImageView android:id="@+id/d3" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+    <ImageView android:id="@+id/d4" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+    <ImageView android:id="@+id/d5" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+    <ImageView android:id="@+id/d6" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+    <ImageView android:id="@+id/d7" android:layout_width="0dp" android:layout_height="20dp" android:layout_weight="1" android:contentDescription="@null" />
+
+</LinearLayout>

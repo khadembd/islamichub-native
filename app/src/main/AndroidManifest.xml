@@ -105,5 +105,16 @@
                 tools:node="remove" />
         </provider>
 
+        <!-- Audio playback service (Media3) -->
+        <service
+            android:name=".services.AudioPlaybackService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="true"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService" />
+            </intent-filter>
+        </service>
+
     </application>
 </manifest>

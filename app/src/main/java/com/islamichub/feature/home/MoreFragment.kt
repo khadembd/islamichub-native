@@ -32,6 +32,13 @@ class MoreFragment : Fragment() {
             MoreItem(R.drawable.ic_story,     "ইসলামিক গল্প") { goto(R.id.stories_dest) },
             MoreItem(R.drawable.ic_info,      "ভুল ধারণা")      { goto(R.id.misconceptions_dest) },
             MoreItem(R.drawable.ic_help,      "প্রশ্নোত্তর")    { goto(R.id.questions_dest) },
+            MoreItem(R.drawable.ic_play,      "নামাজ অডিও")     { goto(R.id.audio_dest) },
+            MoreItem(R.drawable.ic_prayer,    "নামাজ ট্র্যাকার") { goto(R.id.salah_tracker_dest) },
+            MoreItem(R.drawable.ic_mic,       "এআই স্কলার")     { goto(R.id.ai_scholar_dest) },
+            MoreItem(R.drawable.ic_camera,    "ভিশন স্ক্যানার")  { goto(R.id.scanner_dest) },
+            MoreItem(R.drawable.ic_mic,       "তাজবিদ চেকার")   { goto(R.id.tajweed_dest) },
+            MoreItem(R.drawable.ic_quran,     "দৈনিক বিষয়বস্তু") { goto(R.id.daily_content_dest) },
+            MoreItem(R.drawable.ic_lock,      "অ্যাপ লক")        { goto(R.id.app_lock_dest) },
             MoreItem(R.drawable.ic_settings,  "সেটিংস")         { goto(R.id.settings_dest) }
         )
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

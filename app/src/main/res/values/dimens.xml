@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Islamic Hub — Design tokens (spacing, radius, sizing)
+    Per UI/UX plan §6: centralized tokens to eliminate arbitrary values.
+-->
+<resources>
+    <!-- ========== Spacing scale (4dp base) ========== -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">12dp</dimen>
+    <dimen name="spacing_base">16dp</dimen>
+    <dimen name="spacing_lg">20dp</dimen>
+    <dimen name="spacing_xl">24dp</dimen>
+    <dimen name="spacing_2xl">32dp</dimen>
+    <dimen name="spacing_3xl">40dp</dimen>
+    <dimen name="spacing_4xl">48dp</dimen>
+
+    <!-- ========== Radius scale ========== -->
+    <dimen name="radius_small">12dp</dimen>
+    <dimen name="radius_card">16dp</dimen>
+    <dimen name="radius_hero">20dp</dimen>
+    <dimen name="radius_sheet">24dp</dimen>
+
+    <!-- ========== Card paddings ========== -->
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="card_padding_lg">20dp</dimen>
+    <dimen name="card_padding_xl">24dp</dimen>
+
+    <!-- ========== Screen paddings ========== -->
+    <dimen name="screen_padding">16dp</dimen>
+    <dimen name="screen_padding_lg">20dp</dimen>
+
+    <!-- ========== Touch target ========== -->
+    <dimen name="touch_target">48dp</dimen>
+
+    <!-- ========== Icon sizes ========== -->
+    <dimen name="icon_sm">20dp</dimen>
+    <dimen name="icon_md">24dp</dimen>
+    <dimen name="icon_lg">32dp</dimen>
+    <dimen name="icon_xl">48dp</dimen>
+    <dimen name="icon_2xl">64dp</dimen>
+
+    <!-- ========== Hero card ========== -->
+    <dimen name="hero_card_height">200dp</dimen>
+    <dimen name="hero_card_radius">20dp</dimen>
+
+    <!-- ========== Zikr circle ========== -->
+    <dimen name="zikr_circle_size">240dp</dimen>
+
+    <!-- ========== Qibla compass ========== -->
+    <dimen name="qibla_compass_size">280dp</dimen>
+
+    <!-- ========== Text sizes ========== -->
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_body_sm">13sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_body_lg">16sp</dimen>
+    <dimen name="text_h3">18sp</dimen>
+    <dimen name="text_h2">20sp</dimen>
+    <dimen name="text_h1">24sp</dimen>
+    <dimen name="text_display">32sp</dimen>
+    <dimen name="text_arabic_lg">30sp</dimen>
+    <dimen name="text_arabic_xl">40sp</dimen>
+
+    <!-- ========== Elevation ========== -->
+    <dimen name="elevation_flat">0dp</dimen>
+    <dimen name="elevation_low">1dp</dimen>
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_raised">4dp</dimen>
+    <dimen name="elevation_overlay">8dp</dimen>
+
+</resources>

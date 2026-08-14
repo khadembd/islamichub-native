@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    bg_hero_gradient.xml — premium hero gradient (lavender → dark violet)
+    Used as background for hero cards.
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="135"
+                android:startColor="@color/primary"
+                android:centerColor="@color/primary_dark"
+                android:endColor="@color/primary_dark" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+</layer-list>

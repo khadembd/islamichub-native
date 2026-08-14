@@ -28,6 +28,14 @@
         <action android:id="@+id/action_home_to_questions" app:destination="@id/questions_dest" />
         <action android:id="@+id/action_home_to_bookmarks" app:destination="@id/bookmarks_dest" />
         <action android:id="@+id/action_home_to_search" app:destination="@id/search_dest" />
+        <action android:id="@+id/action_home_to_audio" app:destination="@id/audio_dest" />
+        <action android:id="@+id/action_home_to_salah_tracker" app:destination="@id/salah_tracker_dest" />
+        <action android:id="@+id/action_home_to_ai" app:destination="@id/ai_scholar_dest" />
+        <action android:id="@+id/action_home_to_scanner" app:destination="@id/scanner_dest" />
+        <action android:id="@+id/action_home_to_tajweed" app:destination="@id/tajweed_dest" />
+        <action android:id="@+id/action_home_to_daily" app:destination="@id/daily_content_dest" />
+        <action android:id="@+id/action_home_to_admin" app:destination="@id/admin_dest" />
+        <action android:id="@+id/action_home_to_app_lock" app:destination="@id/app_lock_dest" />
     </fragment>
 
     <fragment
@@ -50,76 +58,27 @@
 
     <!-- ============ Feature destinations ============ -->
 
-    <fragment
-        android:id="@+id/hadith_dest"
-        android:name="com.islamichub.feature.hadith.HadithFragment"
-        android:label="@string/section_hadith"
-        tools:layout="@layout/fragment_hadith" />
+    <fragment android:id="@+id/hadith_dest" android:name="com.islamichub.feature.hadith.HadithFragment" android:label="@string/section_hadith" tools:layout="@layout/fragment_hadith" />
+    <fragment android:id="@+id/dua_dest" android:name="com.islamichub.feature.dua.DuaFragment" android:label="@string/section_dua" tools:layout="@layout/fragment_dua" />
+    <fragment android:id="@+id/zikr_dest" android:name="com.islamichub.feature.zikr.ZikrFragment" android:label="@string/section_zikr" tools:layout="@layout/fragment_zikr" />
+    <fragment android:id="@+id/asmaul_husna_dest" android:name="com.islamichub.feature.asmaulhusna.AsmaulHusnaFragment" android:label="@string/section_asmaul_husna" tools:layout="@layout/fragment_asmaul_husna" />
+    <fragment android:id="@+id/qibla_dest" android:name="com.islamichub.feature.qibla.QiblaFragment" android:label="@string/section_qibla" tools:layout="@layout/fragment_qibla" />
+    <fragment android:id="@+id/namaz_dest" android:name="com.islamichub.feature.namaz.NamazFragment" android:label="@string/section_namaz" tools:layout="@layout/fragment_namaz" />
+    <fragment android:id="@+id/stories_dest" android:name="com.islamichub.feature.stories.StoriesFragment" android:label="@string/section_stories" tools:layout="@layout/fragment_stories" />
+    <fragment android:id="@+id/misconceptions_dest" android:name="com.islamichub.feature.misconceptions.MisconceptionsFragment" android:label="@string/section_misconceptions" tools:layout="@layout/fragment_misconceptions" />
+    <fragment android:id="@+id/questions_dest" android:name="com.islamichub.feature.questions.QuestionsFragment" android:label="@string/section_questions" tools:layout="@layout/fragment_questions" />
+    <fragment android:id="@+id/bookmarks_dest" android:name="com.islamichub.feature.bookmarks.BookmarksFragment" android:label="@string/section_bookmarks" tools:layout="@layout/fragment_bookmarks" />
+    <fragment android:id="@+id/search_dest" android:name="com.islamichub.feature.search.SearchFragment" android:label="@string/action_search" tools:layout="@layout/fragment_search" />
+    <fragment android:id="@+id/settings_dest" android:name="com.islamichub.feature.profile.SettingsFragment" android:label="@string/section_settings" tools:layout="@layout/fragment_settings" />
 
-    <fragment
-        android:id="@+id/dua_dest"
-        android:name="com.islamichub.feature.dua.DuaFragment"
-        android:label="@string/section_dua"
-        tools:layout="@layout/fragment_dua" />
-
-    <fragment
-        android:id="@+id/zikr_dest"
-        android:name="com.islamichub.feature.zikr.ZikrFragment"
-        android:label="@string/section_zikr"
-        tools:layout="@layout/fragment_zikr" />
-
-    <fragment
-        android:id="@+id/asmaul_husna_dest"
-        android:name="com.islamichub.feature.asmaulhusna.AsmaulHusnaFragment"
-        android:label="@string/section_asmaul_husna"
-        tools:layout="@layout/fragment_asmaul_husna" />
-
-    <fragment
-        android:id="@+id/qibla_dest"
-        android:name="com.islamichub.feature.qibla.QiblaFragment"
-        android:label="@string/section_qibla"
-        tools:layout="@layout/fragment_qibla" />
-
-    <fragment
-        android:id="@+id/namaz_dest"
-        android:name="com.islamichub.feature.namaz.NamazFragment"
-        android:label="@string/section_namaz"
-        tools:layout="@layout/fragment_namaz" />
-
-    <fragment
-        android:id="@+id/stories_dest"
-        android:name="com.islamichub.feature.stories.StoriesFragment"
-        android:label="@string/section_stories"
-        tools:layout="@layout/fragment_stories" />
-
-    <fragment
-        android:id="@+id/misconceptions_dest"
-        android:name="com.islamichub.feature.misconceptions.MisconceptionsFragment"
-        android:label="@string/section_misconceptions"
-        tools:layout="@layout/fragment_misconceptions" />
-
-    <fragment
-        android:id="@+id/questions_dest"
-        android:name="com.islamichub.feature.questions.QuestionsFragment"
-        android:label="@string/section_questions"
-        tools:layout="@layout/fragment_questions" />
-
-    <fragment
-        android:id="@+id/bookmarks_dest"
-        android:name="com.islamichub.feature.bookmarks.BookmarksFragment"
-        android:label="@string/section_bookmarks"
-        tools:layout="@layout/fragment_bookmarks" />
-
-    <fragment
-        android:id="@+id/search_dest"
-        android:name="com.islamichub.feature.search.SearchFragment"
-        android:label="@string/action_search"
-        tools:layout="@layout/fragment_search" />
-
-    <fragment
-        android:id="@+id/settings_dest"
-        android:name="com.islamichub.feature.profile.SettingsFragment"
-        android:label="@string/section_settings"
-        tools:layout="@layout/fragment_settings" />
+    <!-- New feature destinations -->
+    <fragment android:id="@+id/audio_dest" android:name="com.islamichub.feature.audio.AudioFragment" android:label="নামাজ অডিও" tools:layout="@layout/fragment_generic_list" />
+    <fragment android:id="@+id/salah_tracker_dest" android:name="com.islamichub.feature.tracker.SalahTrackerFragment" android:label="@string/salah_tracker_title" tools:layout="@layout/fragment_salah_tracker" />
+    <fragment android:id="@+id/ai_scholar_dest" android:name="com.islamichub.feature.ai.AIScholarFragment" android:label="@string/ai_scholar_title" tools:layout="@layout/fragment_ai_scholar" />
+    <fragment android:id="@+id/scanner_dest" android:name="com.islamichub.feature.scanner.VisionScannerFragment" android:label="@string/scanner_title" tools:layout="@layout/fragment_scanner" />
+    <fragment android:id="@+id/tajweed_dest" android:name="com.islamichub.feature.tajweed.TajweedCheckerFragment" android:label="@string/tajweed_title" tools:layout="@layout/fragment_tajweed" />
+    <fragment android:id="@+id/daily_content_dest" android:name="com.islamichub.feature.dailycontent.DailyContentFragment" android:label="দৈনিক বিষয়বস্তু" tools:layout="@layout/fragment_daily_content" />
+    <fragment android:id="@+id/admin_dest" android:name="com.islamichub.feature.admin.AdminFragment" android:label="@string/admin_title" tools:layout="@layout/fragment_generic_list" />
+    <fragment android:id="@+id/app_lock_dest" android:name="com.islamichub.feature.applock.AppLockFragment" android:label="@string/app_lock_title" tools:layout="@layout/fragment_app_lock" />
 
 </navigation>

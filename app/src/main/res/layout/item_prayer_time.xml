@@ -1,44 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- item_prayer_time.xml — single row in the prayer list -->
+<!--
+    item_prayer_time.xml — premium prayer row with state chip
+    Per UI/UX plan §11:
+    - Icon + name + state chip
+    - Time as strongest secondary info
+    - Current → soft primary tint, completed → subtle success
+-->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/prayerCard"
     style="@style/Widget.IslamicHub.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="4dp"
-    app:cardCornerRadius="14dp">
+    android:layout_marginVertical="@dimen/spacing_xs"
+    app:cardCornerRadius="@dimen/radius_card"
+    app:strokeWidth="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="14dp">
+        android:padding="@dimen/spacing_md">
 
-        <View
-            android:id="@+id/prayerColorDot"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:background="@drawable/prayer_color_dot" />
+        <!-- Prayer icon with tinted background -->
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp">
 
-        <TextView
-            android:id="@+id/prayerName"
+            <View
+                android:id="@+id/prayerColorDot"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/prayer_color_dot" />
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_prayer"
+                app:tint="@android:color/white" />
+
+        </FrameLayout>
+
+        <!-- Name + state chip -->
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/spacing_md"
             android:layout_weight="1"
-            android:textAppearance="@style/TextAppearance.IslamicHub.Title"
-            tools:text="ফজর" />
+            android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/prayerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.IslamicHub.Title"
+                android:textSize="@dimen/text_body_lg"
+                android:textStyle="bold"
+                tools:text="ফজর" />
+
+            <TextView
+                android:id="@+id/prayerStateChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_state_chip_next"
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingVertical="2dp"
+                android:text="চলমান"
+                android:textColor="@color/gold_dark"
+                android:textSize="@dimen/text_caption"
+                android:textStyle="bold"
+                tools:text="চলমান" />
+
+        </LinearLayout>
+
+        <!-- Time -->
         <TextView
             android:id="@+id/prayerTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.IslamicHub.Body"
-            android:textSize="18sp"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_h2"
             tools:text="৫:০৮ অপরাহ্ণ" />
 
     </LinearLayout>

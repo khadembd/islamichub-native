@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_salah_today.xml — single prayer row in today's list -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/spacing_md"
+    android:background="@drawable/bg_card_pill"
+    android:layout_marginVertical="@dimen/spacing_xs">
+
+    <FrameLayout
+        android:layout_width="36dp"
+        android:layout_height="36dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_icon_circle" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_prayer"
+            app:tint="@color/primary" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/prayerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_md"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextAppearance.IslamicHub.Title"
+        android:textSize="@dimen/text_body_lg"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText"
+        android:text="ফজর" />
+
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/completedSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
