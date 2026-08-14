@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
         }
         viewModel.dailyAyah.observe(viewLifecycleOwner) { ayah ->
             binding.dailyAyahArabic.text = ayah?.arabic.orEmpty()
-            binding.dailyAyahTranslation.text = ayah?.bangla.orEmpty()
+            binding.dailyAyahTranslation.text = ayah?.meaning.orEmpty()
         }
     }
 

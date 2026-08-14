@@ -21,6 +21,7 @@ import com.islamichub.R
 import com.islamichub.databinding.FragmentQiblaBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 /**

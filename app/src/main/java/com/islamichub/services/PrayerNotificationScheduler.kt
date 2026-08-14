@@ -44,14 +44,6 @@ class PrayerNotificationScheduler @Inject constructor(
         const val NOTIF_ID_MAGHRIB = 1004
         const val NOTIF_ID_ISHA = 1005
         const val NOTIF_ID_DAILY = 1100
-
-        fun scheduleAll(context: Context) {
-            // Trigger scheduling via Hilt-injected singleton.
-            // This companion function is called from Application.onCreate() —
-            // it does NOT directly access Hilt; instead it sends an intent
-            // that the work manager picks up.
-            PrayerBootReceiver.scheduleAll(context)
-        }
     }
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
