@@ -35,7 +35,8 @@ android {
     buildTypes {
         debug {
             isMinifyEnabled = false
-            applicationIdSuffix = ".debug"
+            // No applicationIdSuffix — Firebase google-services.json requires
+            // the package_name to match exactly `com.islamic.islam`.
             versionNameSuffix = "-debug"
         }
         release {
