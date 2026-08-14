@@ -146,7 +146,7 @@
         <item name="android:fontFamily">@font/arabic_font</item>
     </style>
 
-    <style name="TextAppearance.IslamicHub.ArabicSmall">
+    <style name="TextAppearance.IslamicHub.ArabicSmall" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">22sp</item>
         <item name="android:lineSpacingExtra">6dp</item>
