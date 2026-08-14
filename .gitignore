@@ -68,12 +68,13 @@ Desktop.ini
 .mtj.tmp/
 
 # Package Files
-*.jar
 *.war
 *.ear
 *.zip
 *.tar.gz
 *.rar
+# NOTE: *.jar is NOT ignored — the Gradle wrapper jar must be committed.
+# Individual unwanted jars can still be excluded via more specific patterns.
 
 # virtual machine crash logs
 hs_err_pid*
