@@ -92,6 +92,10 @@ jobs:
 
       - name: Build release APK (unsigned)
         if: github.event.inputs.build_type != 'debug'
+        # Release build uses R8 minification which has a known
+        # ConcurrentModificationException on some Kotlin/Hilt combinations.
+        # We continue-on-error so debug APK is still uploaded even if release fails.
+        continue-on-error: true
         run: ./gradlew :app:assembleRelease --stacktrace --no-daemon
 
       - name: List build outputs
