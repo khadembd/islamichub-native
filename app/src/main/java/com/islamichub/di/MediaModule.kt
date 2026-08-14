@@ -10,7 +10,11 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 /**
- * MediaModule — provides ExoPlayer singleton for audio playback.
+ * MediaModule — provides ExoPlayer singleton for fragments that need
+ * direct access (e.g., QuranFragment for surah audio preview).
+ *
+ * AudioPlaybackService creates its own ExoPlayer internally for
+ * background playback — this is a separate instance for UI-level use.
  */
 @Module
 @InstallIn(SingletonComponent::class)
@@ -19,8 +23,13 @@ object MediaModule {
     @Provides
     @Singleton
     fun provideExoPlayer(@ApplicationContext context: Context): ExoPlayer {
-        return ExoPlayer.Builder(context)
-            .setHandleAudioBecomingNoisy(true)
-            .build()
+        return try {
+            ExoPlayer.Builder(context)
+                .setHandleAudioBecomingNoisy(true)
+                .build()
+        } catch (e: Exception) {
+            // Fallback: return a basic ExoPlayer if config fails
+            ExoPlayer.Builder(context).build()
+        }
     }
 }

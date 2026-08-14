@@ -1,17 +1,11 @@
 package com.islamichub.services
 
-import android.app.Notification
 import android.app.PendingIntent
 import android.content.Intent
-import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
-import com.islamichub.MainActivity
-import com.islamichub.R
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 /**
  * AudioPlaybackService — background audio playback using Media3.
@@ -22,18 +16,21 @@ import javax.inject.Inject
  *  - Future Quran recitation
  *
  * Playback continues in background with media notification controls.
+ *
+ * NOTE: Does NOT use @AndroidEntryPoint to avoid Hilt initialization
+ * timing issues. ExoPlayer is created lazily when session is requested.
  */
-@AndroidEntryPoint
 class AudioPlaybackService : MediaSessionService() {
 
     private var mediaSession: MediaSession? = null
-
-    @Inject
-    lateinit var player: ExoPlayer
+    private var player: ExoPlayer? = null
 
     override fun onCreate() {
         super.onCreate()
         try {
+            player = ExoPlayer.Builder(this)
+                .setHandleAudioBecomingNoisy(true)
+                .build()
             val sessionActivityIntent = packageManager.getLaunchIntentForPackage(packageName)
             val pendingIntent = sessionActivityIntent?.let {
                 PendingIntent.getActivity(
@@ -41,7 +38,7 @@ class AudioPlaybackService : MediaSessionService() {
                     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
             }
-            val builder = MediaSession.Builder(this, player)
+            val builder = MediaSession.Builder(this, player!!)
             if (pendingIntent != null) {
                 builder.setSessionActivity(pendingIntent)
             }
@@ -55,7 +52,8 @@ class AudioPlaybackService : MediaSessionService() {
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         try {
-            if (!player.playWhenReady || player.mediaItemCount == 0) {
+            val p = player
+            if (p != null && (!p.playWhenReady || p.mediaItemCount == 0)) {
                 stopSelf()
             }
         } catch (e: Exception) {
@@ -71,6 +69,7 @@ class AudioPlaybackService : MediaSessionService() {
                 release()
             }
             mediaSession = null
+            player = null
         } catch (e: Exception) {
             // Defensive cleanup
         }

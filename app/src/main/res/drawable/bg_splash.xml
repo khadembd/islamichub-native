@@ -6,11 +6,11 @@
       gradient overlay: linear-gradient(180deg, rgba(6,78,59,0.9) 0%, rgba(13,148,136,0.95) 100%)
 -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Background image -->
+    <!-- Background image (fill the screen) -->
     <item>
         <bitmap
             android:src="@drawable/sidebar_header_bg"
-            android:gravity="center|fill" />
+            android:gravity="fill" />
     </item>
     <!-- Emerald → teal gradient overlay (semi-transparent) -->
     <item>

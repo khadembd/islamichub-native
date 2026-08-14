@@ -2,7 +2,6 @@ package com.islamichub
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -11,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * MainActivity — single-activity host.
- * Splash screen → Navigation graph with BottomNavigationView.
+ * Splash screen is handled by SplashActivity (custom layout, not system API).
  *
  * শুধুমাত্র একটি Activity — সব স্ক্রিন Fragment হিসেবে রান হবে।
  * WebView/Capacitor ব্যবহার করা হয় না।
@@ -22,8 +21,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // Splash screen must be installed before super.onCreate()
-        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

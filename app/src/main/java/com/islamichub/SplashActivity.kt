@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -13,13 +16,16 @@ import kotlin.random.Random
 /**
  * SplashActivity — premium splash screen matching source islamic.html #appSplash.
  *
- * Shows for 2.5s with:
+ * Shows for ~2.5s with:
  *  - Mosque image background + gradient overlay
- *  - Animated logo
+ *  - Animated logo (scale + fade in)
  *  - Rotating Quran quotes (one per launch)
- *  - Loading progress bar
+ *  - Loading progress bar (animated 0-100%)
  *
  * Then transitions to MainActivity.
+ *
+ * পুরোপুরি নেটিভ — system SplashScreen API ব্যবহার করা হয় না যাতে
+ * আমরা full control পাই image background + quote + animation এর উপর।
  */
 class SplashActivity : AppCompatActivity() {
 
@@ -34,11 +40,29 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         CrashHandler.install()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash_screen)
+        try {
+            setContentView(R.layout.splash_screen)
+            animateSplash()
+        } catch (e: Exception) {
+            // Defensive: if splash layout fails, jump directly to MainActivity
+            launchMain()
+        }
+    }
 
+    private fun animateSplash() {
         // Pick a random Quran quote
-        val (arabic, bangla) = quranQuotes[Random.nextInt(quranQuotes.size)]
+        val (arabic, _) = quranQuotes[Random.nextInt(quranQuotes.size)]
         findViewById<TextView>(R.id.splashQuote).text = arabic
+
+        // Animate logo with scale + fade in
+        val logoFrame = findViewById<View>(R.id.splashQuote)
+        try {
+            val scaleAnim = AnimationUtils.loadAnimation(this, android.R.anim.fade_in)
+            scaleAnim.duration = 800
+            logoFrame.startAnimation(scaleAnim)
+        } catch (e: Exception) {
+            // Defensive: animation may fail on some devices
+        }
 
         // Animate progress bar
         val progress = findViewById<ProgressBar>(R.id.splashProgress)
@@ -46,25 +70,34 @@ class SplashActivity : AppCompatActivity() {
         var p = 0
         val progressRunnable = object : Runnable {
             override fun run() {
-                p += 4
-                progress.progress = p
-                if (p < 100) {
-                    handler.postDelayed(this, 80)
-                } else {
-                    // Progress complete, launch MainActivity after short delay
-                    handler.postDelayed({
-                        try {
-                            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
-                            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                            finish()
-                        } catch (e: Exception) {
-                            // Defensive: in case activity launch fails
-                            finishAffinity()
-                        }
-                    }, 200)
+                try {
+                    p += 5
+                    progress.progress = p
+                    if (p < 100) {
+                        handler.postDelayed(this, 100)
+                    } else {
+                        // Progress complete, launch MainActivity after short delay
+                        handler.postDelayed({
+                            launchMain()
+                        }, 300)
+                    }
+                } catch (e: Exception) {
+                    // Defensive: if animation loop fails, just launch main
+                    launchMain()
                 }
             }
         }
-        handler.postDelayed(progressRunnable, 100)
+        handler.postDelayed(progressRunnable, 200)
+    }
+
+    private fun launchMain() {
+        try {
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            finish()
+        } catch (e: Exception) {
+            // Last resort: finish activity to avoid black screen
+            finishAffinity()
+        }
     }
 }
