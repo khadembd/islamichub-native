@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Islamic Hub — Bangla strings (values-bn)
+    বাংলা স্ট্রিং রিসোর্স
+-->
+<resources>
+    <string name="app_name">ইসলামিক হাব</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">হোম</string>
+    <string name="nav_quran">কুরআন</string>
+    <string name="nav_prayer">নামাজ</string>
+    <string name="nav_more">আরও</string>
+
+    <!-- Home screen sections -->
+    <string name="section_quran">কুরআন</string>
+    <string name="section_hadith">হাদিস</string>
+    <string name="section_namaz">নামাজ শিক্ষা</string>
+    <string name="section_dua">দোয়া</string>
+    <string name="section_zikr">জিকির / তসবিহ</string>
+    <string name="section_asmaul_husna">আসমাউল হুসনা</string>
+    <string name="section_qibla">কিবলা</string>
+    <string name="section_stories">ইসলামিক গল্প</string>
+    <string name="section_misconceptions">ভুল ধারণা</string>
+    <string name="section_questions">প্রশ্নোত্তর</string>
+    <string name="section_bookmarks">বুকমার্ক</string>
+    <string name="section_settings">সেটিংস</string>
+
+    <!-- Common -->
+    <string name="action_search">খুঁজুন</string>
+    <string name="action_share">শেয়ার</string>
+    <string name="action_bookmark">বুকমার্ক</string>
+    <string name="action_play">চালান</string>
+    <string name="action_pause">বিরতি</string>
+    <string name="action_retry">পুনরায় চেষ্টা</string>
+    <string name="loading">লোড হচ্ছে…</string>
+    <string name="empty_state">কোনো তথ্য নেই</string>
+    <string name="error_generic">কিছু সমস্যা হয়েছে</string>
+
+    <!-- Permissions -->
+    <string name="perm_location_rationale">সঠিক নামাজের সময় ও কিবলা দিক দেখাতে লোকেশন অনুমতি প্রয়োজন।</string>
+    <string name="perm_camera_rationale">ভিশন স্ক্যানার-এর জন্য ক্যামেরা অনুমতি প্রয়োজন।</string>
+    <string name="perm_microphone_rationale">তাজবিদ চেকার-এর জন্য মাইক্রোফোন অনুমতি প্রয়োজন।</string>
+    <string name="perm_notifications_rationale">নামাজের সময়ের রিমাইন্ডার-এর জন্য নোটিফিকেশন অনুমতি প্রয়োজন।</string>
+    <string name="perm_denied_permanent">অনুমতি স্থায়ীভাবে অস্বীকৃত। অ্যাপ সেটিংসে চালু করুন।</string>
+    <string name="action_open_settings">সেটিংস খুলুন</string>
+
+    <!-- Prayer notification channels -->
+    <string name="channel_prayer_id">prayer_notifications</string>
+    <string name="channel_prayer_name">নামাজের সময় রিমাইন্ডার</string>
+    <string name="channel_prayer_desc">পাঁচ ওয়াক্ত নামাজের নোটিফিকেশন</string>
+    <string name="channel_daily_id">daily_content</string>
+    <string name="channel_daily_name">দৈনিক বিষয়বস্তু</string>
+    <string name="channel_daily_desc">আজকের আয়াত ও হাদিস</string>
+
+    <!-- Qibla -->
+    <string name="qibla_bearing_label">কিবলা দিক: %1$d°</string>
+    <string name="qibla_distance_label">মক্কার দূরত্ব: %1$,d কিমি</string>
+
+    <!-- Zikr counter -->
+    <string name="zikr_count_label">গণনা: %1$d</string>
+    <string name="zikr_target_label">লক্ষ্য: %1$d</string>
+    <string name="zikr_total_label">মোট: %1$d</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">ইসলামিক হাব লোগো</string>
+    <string name="cd_qibla_compass">কিবলা কম্পাস</string>
+    <string name="cd_play_button">অডিও চালান</string>
+
+    <!-- Release notes -->
+    <string name="version_label">ভার্সন %1$s</string>
+</resources>

@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-08-14T14:28:02.009Z",
+  "source": "/home/z/my-project/sources/islamic-hub-source/islamichub",
+  "output": "app/src/main/assets/data",
+  "totalConverted": 14,
+  "totalErrors": 0,
+  "files": [
+    {
+      "src": "kalima-data.js",
+      "global": "kalimaData",
+      "out": "kalima.json",
+      "status": "ok",
+      "records": 2,
+      "bytes": 1670,
+      "sha256": "c8f333563452a15ea16818aef05afe1eb89ad57c196bc1969829d29296b39f44"
+    },
+    {
+      "src": "dua-data.js",
+      "global": "DUA_DATA",
+      "out": "dua.json",
+      "status": "ok",
+      "records": 28,
+      "bytes": 29851,
+      "sha256": "4b1b6a9aff0c8df0376f069d201068b53dc71c7aa3a543a94ffd2df766f9f94a"
+    },
+    {
+      "src": "asmaul-husna-data.js",
+      "global": "asmaulHusnaData",
+      "out": "asmaul_husna.json",
+      "status": "ok",
+      "records": 99,
+      "bytes": 68565,
+      "sha256": "eb6df0501bd28ceb87af787c70f5294a8a3265d4fc97afb592b7d4b8355124e3"
+    },
+    {
+      "src": "namaz-data.js",
+      "global": "namazData",
+      "out": "namaz.json",
+      "status": "ok",
+      "records": 3,
+      "bytes": 1698,
+      "sha256": "5faf04298bc0b894ef7c54d18b289a4221f2d5def2f968dd7337a543802c2a44"
+    },
+    {
+      "src": "namaz-extras-data.js",
+      "global": "namazExtras",
+      "out": "namaz_extras.json",
+      "status": "ok",
+      "records": 6,
+      "bytes": 71777,
+      "sha256": "71158ba16c4484a7055c0bd84232c8ae3b6a620f92bf99c4a6207d7b5302ad3f"
+    },
+    {
+      "src": "extended-namaz-data.js",
+      "global": "extendedNamazData",
+      "out": "extended_namaz.json",
+      "status": "ok",
+      "records": 1,
+      "bytes": 34619,
+      "sha256": "1b1b2498d2003f7ebc346823493c92c5a31c7a6251e9188815f42951e7f91437"
+    },
+    {
+      "src": "namazshikkha-data.js",
+      "global": "namazData",
+      "out": "namaz_shikkha.json",
+      "status": "ok",
+      "records": 7,
+      "bytes": 77268,
+      "sha256": "ff1548655c680195a431b5bd6530d6be18d6a627f158d4dae0f97b0b988f0f8a"
+    },
+    {
+      "src": "hadith-data.js",
+      "global": "hadithData",
+      "out": "hadith.json",
+      "status": "ok",
+      "records": 2,
+      "bytes": 1027,
+      "sha256": "4d83fd023d31c555850c65d164fd38dfdbe265b469137ecea286b088be600dca"
+    },
+    {
+      "src": "extended-hadith-data.js",
+      "global": "extendedHadithData",
+      "out": "extended_hadith.json",
+      "status": "ok",
+      "records": 1,
+      "bytes": 39262,
+      "sha256": "9af55087327224dc33a3f8b8a3fc8dcdebe972d2f2eff0c4ad27def15f26c0bf"
+    },
+    {
+      "src": "question-data.js",
+      "global": "questionData",
+      "out": "questions.json",
+      "status": "ok",
+      "records": 11,
+      "bytes": 73075,
+      "sha256": "9d9e0f746a00f3c9f2716faacce9f171b9f85b3346d3cc298c6ee0bcfa2fecaf"
+    },
+    {
+      "src": "ans-data.js",
+      "global": "ansData",
+      "out": "answers.json",
+      "status": "ok",
+      "records": 11,
+      "bytes": 393532,
+      "sha256": "e27d93c7a14d04accedcb904ed0bbfd896a962fca45fa7c90a63f53a134915ea"
+    },
+    {
+      "src": "misconceptions-data.js",
+      "global": "misconceptionsData",
+      "out": "misconceptions.json",
+      "status": "ok",
+      "records": 11,
+      "bytes": 146017,
+      "sha256": "e34962641a9657d7db1c7753c7f602250713ac86fbed764f4fa8aa953df547c8"
+    },
+    {
+      "src": "islamic-stories-data.js",
+      "global": "IslamicStoriesData",
+      "out": "islamic_stories.json",
+      "status": "ok",
+      "records": 9,
+      "bytes": 107119,
+      "sha256": "7189be42f436774c682b6479c23cf0f44ad62c5004ebb6621bf92ac32f512455"
+    },
+    {
+      "src": "location-data.js",
+      "global": "BANGLADESH_LOCATIONS",
+      "out": "locations.json",
+      "status": "ok",
+      "records": 8,
+      "bytes": 11093,
+      "sha256": "e6a6e59df0e437dd36f8b98a57553c40a5fd7bfff9dedfcedbfdf379e86635b7"
+    }
+  ]
+}

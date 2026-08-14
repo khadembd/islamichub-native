@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Islamic Hub — Strings (English + Bangla)
+    স্ট্রিং রিসোর্স: app_name, navigation, common labels
+    Bangla values আলাদা values-bn/ ফোল্ডারে রাখা হবে।
+-->
+<resources>
+    <string name="app_name">Islamic Hub</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_quran">Quran</string>
+    <string name="nav_prayer">Prayer</string>
+    <string name="nav_more">More</string>
+
+    <!-- Home screen sections -->
+    <string name="section_quran">Quran</string>
+    <string name="section_hadith">Hadith</string>
+    <string name="section_namaz">Namaz</string>
+    <string name="section_dua">Dua</string>
+    <string name="section_zikr">Zikr / Tasbih</string>
+    <string name="section_asmaul_husna">Asmaul Husna</string>
+    <string name="section_qibla">Qibla</string>
+    <string name="section_stories">Stories</string>
+    <string name="section_misconceptions">Misconceptions</string>
+    <string name="section_questions">Questions</string>
+    <string name="section_bookmarks">Bookmarks</string>
+    <string name="section_settings">Settings</string>
+
+    <!-- Common -->
+    <string name="action_search">Search</string>
+    <string name="action_share">Share</string>
+    <string name="action_bookmark">Bookmark</string>
+    <string name="action_play">Play</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_retry">Retry</string>
+    <string name="loading">Loading…</string>
+    <string name="empty_state">No items to show</string>
+    <string name="error_generic">Something went wrong</string>
+
+    <!-- Permissions -->
+    <string name="perm_location_rationale">Location permission is needed to show accurate prayer times and Qibla direction.</string>
+    <string name="perm_camera_rationale">Camera permission is needed for the vision scanner.</string>
+    <string name="perm_microphone_rationale">Microphone permission is needed for the Tajweed checker.</string>
+    <string name="perm_notifications_rationale">Notification permission is needed for prayer time reminders.</string>
+    <string name="perm_denied_permanent">Permission permanently denied. Please enable it in app settings.</string>
+    <string name="action_open_settings">Open Settings</string>
+
+    <!-- Prayer notification channels -->
+    <string name="channel_prayer_id">prayer_notifications</string>
+    <string name="channel_prayer_name">Prayer Time Reminders</string>
+    <string name="channel_prayer_desc">Notifications for the five daily prayers</string>
+    <string name="channel_daily_id">daily_content</string>
+    <string name="channel_daily_name">Daily Content</string>
+    <string name="channel_daily_desc">Daily Ayah and Hadith</string>
+
+    <!-- Qibla -->
+    <string name="qibla_bearing_label">Qibla direction: %1$d°</string>
+    <string name="qibla_distance_label">Distance to Mecca: %1$,d km</string>
+
+    <!-- Zikr counter -->
+    <string name="zikr_count_label">Count: %1$d</string>
+    <string name="zikr_target_label">Target: %1$d</string>
+    <string name="zikr_total_label">Total: %1$d</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_app_logo">Islamic Hub logo</string>
+    <string name="cd_qibla_compass">Qibla compass</string>
+    <string name="cd_play_button">Play audio</string>
+
+    <!-- Release notes -->
+    <string name="version_label">Version %1$s</string>
+</resources>

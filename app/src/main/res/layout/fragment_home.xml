@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_home.xml — home screen with feature grid + today's prayer card
+    হোম স্ক্রিন: আজকের নামাজের সময় + ফিচার গ্রিড
+-->
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="?android:colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Premium hero banner -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.IslamicHub.Card.Premium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+                    android:textColor="@color/text_on_primary" />
+
+                <TextView
+                    android:id="@+id/todayDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/gold_light"
+                    android:textSize="14sp"
+                    tools:text="১৪ আগস্ট, ২০২৬" />
+
+                <TextView
+                    android:id="@+id/nextPrayerLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="পরবর্তী নামাজ"
+                    android:textColor="@color/text_on_primary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/nextPrayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/gold_light"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    tools:text="আসর • ৫:২৩ অপরাহ্ণ" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Feature grid section header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="বিভাগসমূহ"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Title" />
+
+        <!-- Feature grid -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/featureGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/item_feature" />
+
+        <!-- Daily Ayah card -->
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.IslamicHub.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="আজকের আয়াত"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.Title" />
+
+                <TextView
+                    android:id="@+id/dailyAyahArabic"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.Arabic"
+                    tools:text="وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا" />
+
+                <TextView
+                    android:id="@+id/dailyAyahTranslation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.IslamicHub.Bengali"
+                    tools:text="যে আল্লাহকে ভয় করে, তিনি তার জন্য বের হবার পথ করে দেন।" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Islamic Hub — Base theme (Light)
+    Material 3 View-based theme using emerald/gold palette
+-->
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme -->
+    <style name="Theme.IslamicHub" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/emerald_primary</item>
+        <item name="colorPrimaryVariant">@color/emerald_light</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
+
+        <!-- Secondary / accent -->
+        <item name="colorSecondary">@color/gold_accent</item>
+        <item name="colorSecondaryVariant">@color/gold_light</item>
+        <item name="colorOnSecondary">@color/text_primary</item>
+
+        <!-- Backgrounds -->
+        <item name="android:colorBackground">@color/cream_bg</item>
+        <item name="colorSurface">@color/surface_light</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <!-- Window animation -->
+        <item name="android:windowAnimationStyle">@style/Animation.IslamicHub</item>
+
+        <!-- Bottom navigation styling -->
+        <item name="bottomNavigationStyle">@style/Widget.IslamicHub.BottomNavigationView</item>
+    </style>
+
+    <!-- Splash theme (Android 12 SplashScreen API) -->
+    <style name="Theme.IslamicHub.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/emerald_primary</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimationDuration">500</item>
+        <item name="postSplashScreenTheme">@style/Theme.IslamicHub</item>
+    </style>
+
+    <!-- Bottom navigation -->
+    <style name="Widget.IslamicHub.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/emerald_primary</item>
+        <item name="itemTextColor">@color/emerald_primary</item>
+        <item name="backgroundTint">@color/surface_light</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <!-- Animations -->
+    <style name="Animation.IslamicHub" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/activity_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/activity_exit</item>
+        <item name="android:activityCloseEnterAnimation">@anim/activity_close_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/activity_close_exit</item>
+    </style>
+
+    <!-- Reusable card styles -->
+    <style name="Widget.IslamicHub.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/card_light</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+
+    <!-- Premium card with gradient background -->
+    <style name="Widget.IslamicHub.Card.Premium">
+        <item name="cardBackgroundColor">@color/emerald_primary</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="contentPadding">20dp</item>
+    </style>
+
+    <!-- Headlines -->
+    <style name="TextAppearance.IslamicHub.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="TextAppearance.IslamicHub.Title" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="TextAppearance.IslamicHub.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <!-- Arabic text (larger, with proper line height for diacritics) -->
+    <style name="TextAppearance.IslamicHub.Arabic" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:lineSpacingExtra">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <!-- Bengali text with proper line height -->
+    <style name="TextAppearance.IslamicHub.Bengali" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+
+</resources>

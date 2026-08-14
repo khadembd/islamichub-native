@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    fragment_qibla.xml — Qibla compass screen
+    কিবলা কম্পাস: native SensorManager + FusedLocation
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/qiblaBearingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+            tools:text="কিবলা দিক: 245°" />
+
+        <TextView
+            android:id="@+id/qiblaDistanceLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Body"
+            tools:text="মক্কার দূরত্ব: 4,857 কিমি" />
+
+        <!-- Compass ring + Kaaba indicator -->
+        <FrameLayout
+            android:layout_width="280dp"
+            android:layout_height="280dp"
+            android:layout_marginTop="32dp">
+
+            <ImageView
+                android:id="@+id/compassRing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/cd_qibla_compass"
+                android:src="@drawable/compass_ring" />
+
+            <ImageView
+                android:id="@+id/kaabaIndicator"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center|top"
+                android:layout_marginTop="-8dp"
+                android:src="@drawable/ic_kaaba" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="N"
+                android:textColor="@color/emerald_primary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="100dp" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/compassStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textAppearance="@style/TextAppearance.IslamicHub.Body"
+            android:text="ফোন সমানভাবে ধরুন • উত্তর দিক চিহ্নিত করুন"
+            android:gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/calibrateButton"
+            style="@style/Widget.Material3.Button.TonalButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="ক্যালিব্রেট করুন" />
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="280dp" android:height="280dp"
+    android:viewportWidth="280" android:viewportHeight="280">
+    <!-- Outer ring -->
+    <path android:fillColor="#00000000" android:strokeColor="#0A5438" android:strokeWidth="3"
+        android:pathData="M 140 8 a 132 132 0 1 0 0.1 0 Z" />
+    <!-- Inner ring -->
+    <path android:fillColor="#00000000" android:strokeColor="#9A7F1E" android:strokeWidth="2"
+        android:pathData="M 140 30 a 110 110 0 1 0 0.1 0 Z" />
+    <!-- Cardinal direction ticks -->
+    <path android:fillColor="#0A5438" android:pathData="M 138 14 h 4 v 16 h -4 z" />
+    <path android:fillColor="#0A5438" android:pathData="M 138 250 h 4 v 16 h -4 z" />
+    <path android:fillColor="#0A5438" android:pathData="M 14 138 h 16 v 4 h -16 z" />
+    <path android:fillColor="#0A5438" android:pathData="M 250 138 h 16 v 4 h -16 z" />
+    <!-- N label -->
+    <path android:fillColor="#0A5438" android:fillAlpha="0.6"
+        android:pathData="M 134 38 h 12 v 8 h -12 z" />
+</vector>

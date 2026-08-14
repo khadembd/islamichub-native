@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp" android:height="48dp"
+    android:viewportWidth="48" android:viewportHeight="48">
+    <!-- Kaaba cube (simplified) -->
+    <path android:fillColor="#1A1A1A" android:pathData="M 8 14 L 24 8 L 40 14 L 40 36 L 24 42 L 8 36 Z" />
+    <path android:fillColor="#D4AF37" android:pathData="M 8 14 L 24 8 L 40 14 L 24 20 Z" />
+    <path android:fillColor="#9A7F1E" android:pathData="M 8 14 L 24 20 L 24 42 L 8 36 Z" />
+    <path android:fillColor="#1A1A1A" android:pathData="M 40 14 L 24 20 L 24 42 L 40 36 Z" />
+    <path android:fillColor="#D4AF37" android:pathData="M 16 18 L 32 18 L 32 22 L 16 22 Z" />
+</vector>
