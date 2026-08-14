@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    premium_mosque.xml — Vector drawable replacement for premium_mosque.svg
+    Android doesn't allow .svg in res/drawable; this is a simplified vector
+    drawable approximation. Original SVG kept in docs/ for reference if needed.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+
+    <!-- Base circle background (emerald) -->
+    <path android:fillColor="#059669"
+        android:pathData="M 60 6 a 54 54 0 1 0 0.1 0 Z" />
+    <!-- Gold ring -->
+    <path android:fillColor="#00000000" android:strokeColor="#D4AF37" android:strokeWidth="2"
+        android:pathData="M 60 6 a 54 54 0 1 0 0.1 0 Z" />
+
+    <!-- Mosque dome -->
+    <path android:fillColor="#D4AF37"
+        android:pathData="M 60 30 C 50 30 42 40 42 50 L 42 70 L 78 70 L 78 50 C 78 40 70 30 60 30 Z" />
+
+    <!-- Dome top crescent -->
+    <path android:fillColor="#D4AF37"
+        android:pathData="M 58 22 a 4 4 0 1 0 4 0 a 3 3 0 1 1 -4 0 Z" />
+
+    <!-- Mosque base / pillars -->
+    <path android:fillColor="#FBBF24"
+        android:pathData="M 38 70 L 82 70 L 82 88 L 38 88 Z" />
+
+    <!-- Door arch -->
+    <path android:fillColor="#064E3B"
+        android:pathData="M 54 88 L 54 78 a 6 6 0 0 1 12 0 L 66 88 Z" />
+
+    <!-- Side pillars -->
+    <path android:fillColor="#FBBF24"
+        android:pathData="M 32 70 L 36 70 L 36 88 L 32 88 Z" />
+    <path android:fillColor="#FBBF24"
+        android:pathData="M 84 70 L 88 70 L 88 88 L 84 88 Z" />
+
+</vector>
