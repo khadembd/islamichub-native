@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/spacing_md">
+
+    <TextView
+        android:id="@+id/hijriText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/text_h3"
+        tools:ignore="HardcodedText"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:text="১৪ মুহররম ১৪৪৮ হিজরি" />
+
+</LinearLayout>

@@ -36,6 +36,10 @@
         <action android:id="@+id/action_home_to_daily" app:destination="@id/daily_content_dest" />
         <action android:id="@+id/action_home_to_admin" app:destination="@id/admin_dest" />
         <action android:id="@+id/action_home_to_app_lock" app:destination="@id/app_lock_dest" />
+        <action android:id="@+id/action_home_to_quran_reader" app:destination="@id/quran_reader_dest" />
+        <action android:id="@+id/action_home_to_hadith_api" app:destination="@id/hadith_api_dest" />
+        <action android:id="@+id/action_home_to_reading_tracker" app:destination="@id/reading_tracker_dest" />
+        <action android:id="@+id/action_home_to_hijri" app:destination="@id/hijri_dest" />
     </fragment>
 
     <fragment
@@ -80,5 +84,9 @@
     <fragment android:id="@+id/daily_content_dest" android:name="com.islamichub.feature.dailycontent.DailyContentFragment" android:label="দৈনিক বিষয়বস্তু" tools:layout="@layout/fragment_daily_content" />
     <fragment android:id="@+id/admin_dest" android:name="com.islamichub.feature.admin.AdminFragment" android:label="@string/admin_title" tools:layout="@layout/fragment_generic_list" />
     <fragment android:id="@+id/app_lock_dest" android:name="com.islamichub.feature.applock.AppLockFragment" android:label="@string/app_lock_title" tools:layout="@layout/fragment_app_lock" />
+    <fragment android:id="@+id/quran_reader_dest" android:name="com.islamichub.feature.quran.QuranReaderFragment" android:label="কুরআন পাঠ" tools:layout="@layout/fragment_quran_reader" />
+    <fragment android:id="@+id/hadith_api_dest" android:name="com.islamichub.feature.hadith.HadithApiFragment" android:label="হাদিস সংগ্রহ" tools:layout="@layout/fragment_generic_list" />
+    <fragment android:id="@+id/reading_tracker_dest" android:name="com.islamichub.feature.tracker.ReadingTrackerFragment" android:label="পড়া ট্র্যাকার" tools:layout="@layout/fragment_reading_tracker" />
+    <fragment android:id="@+id/hijri_dest" android:name="com.islamichub.feature.home.HijriDateFragment" android:label="হিজরি তারিখ" tools:layout="@layout/fragment_hijri_date" />
 
 </navigation>
