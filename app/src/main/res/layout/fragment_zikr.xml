@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     fragment_zikr.xml — premium zikr/tasbih counter
-    Per UI/UX plan §19:
-    - Counter is visual focus
-    - Large number, big tap target
-    - Haptic feedback on tap
-    - Vibrate on target reached
-    - Cycle through zikr types
+    Per source zikr-counter.js + islamic.html zikr view:
+    - Premium background image (zikr-premium-bg)
+    - 6 zikr type selector (chips, not toggle)
+    - Large circular tap target with gradient
+    - Arabic + meaning + transliteration
+    - Sets done + daily + grand total stats
+    - Sound + haptic toggles
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,52 +16,97 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    android:background="@drawable/bg_qibla_screen"
+    android:background="@drawable/bg_premium_zikr"
     android:padding="@dimen/spacing_xl">
 
-    <!-- Zikr type selector -->
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/zikrTypeToggle"
+    <!-- Zikr type selector — horizontal scrolling chips -->
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_md"
-        app:singleSelection="true">
+        android:scrollbars="none">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/zikrSubhanallah"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/zikrChips"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="সুবহানাল্লাহ" />
+            app:singleSelection="true"
+            app:chipSpacingHorizontal="@dimen/spacing_xs">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/zikrAlhamdulillah"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="আলহামদুলিল্লাহ" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSubhanallah"
+                style="@style/Widget.IslamicHub.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="সুবহানআল্লাহ" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/zikrAllahuAkbar"
-            style="@style/Widget.Material3.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="আল্লাহু আকবার" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAlhamdulillah"
+                style="@style/Widget.IslamicHub.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আলহামদুলিল্লাহ" />
 
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAllahuAkbar"
+                style="@style/Widget.IslamicHub.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আল্লাহু আকবার" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipLaIlaha"
+                style="@style/Widget.IslamicHub.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="লা ইলাহা" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAstaghfirullah"
+                style="@style/Widget.IslamicHub.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="আস্তাগফিরুল্লাহ" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDarood"
+                style="@style/Widget.IslamicHub.Chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="দরূদ শরীফ" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- Zikr name + meaning -->
+    <TextView
+        android:id="@+id/zikrTypeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_lg"
+        android:text="সুবহানআল্লাহ"
+        android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_h2" />
 
     <TextView
         android:id="@+id/zikrArabic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_lg"
+        android:layout_marginTop="@dimen/spacing_sm"
+        android:fontFamily="@font/arabic_font"
         android:text="سُبْحَانَ اللَّهِ"
-        android:textAppearance="@style/TextAppearance.IslamicHub.Arabic"
-        android:textColor="@color/primary"
+        android:textColor="@color/gold_light"
         android:textSize="@dimen/text_arabic_xl" />
+
+    <TextView
+        android:id="@+id/zikrMeaning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xs"
+        android:text="আল্লাহ পবিত্র"
+        android:textColor="#B3FFFFFF"
+        android:textSize="@dimen/text_body" />
 
     <!-- Big circular tap target -->
     <FrameLayout
@@ -83,8 +129,8 @@
                 android:id="@+id/zikrCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/text_on_primary"
+                android:text="০"
+                android:textColor="@android:color/white"
                 android:textSize="80sp"
                 android:textStyle="bold" />
 
@@ -102,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_xs"
                 android:text="লক্ষ্য: ৩৩"
-                android:textColor="@color/scrim_light"
+                android:textColor="#B3FFFFFF"
                 android:textSize="@dimen/text_caption" />
 
         </LinearLayout>
@@ -128,8 +174,8 @@
                 android:id="@+id/targetValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="33"
-                android:textColor="@color/primary"
+                android:text="৩৩"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_h1"
                 android:textStyle="bold" />
 
@@ -137,7 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="লক্ষ্য"
-                android:textColor="@color/text_secondary"
+                android:textColor="#B3FFFFFF"
                 android:textSize="@dimen/text_caption" />
         </LinearLayout>
 
@@ -152,8 +198,8 @@
                 android:id="@+id/dailyTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/primary"
+                android:text="০"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_h1"
                 android:textStyle="bold" />
 
@@ -161,7 +207,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="আজ"
-                android:textColor="@color/text_secondary"
+                android:textColor="#B3FFFFFF"
                 android:textSize="@dimen/text_caption" />
         </LinearLayout>
 
@@ -176,8 +222,8 @@
                 android:id="@+id/grandTotal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/primary"
+                android:text="০"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_h1"
                 android:textStyle="bold" />
 
@@ -185,7 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="মোট"
-                android:textColor="@color/text_secondary"
+                android:textColor="#B3FFFFFF"
                 android:textSize="@dimen/text_caption" />
         </LinearLayout>
 
@@ -212,7 +258,9 @@
             android:id="@+id/vibrateSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ভাইব্রেট" />
+            android:checked="true"
+            android:text="ভাইব্রেট"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

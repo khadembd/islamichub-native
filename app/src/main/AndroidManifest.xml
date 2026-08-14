@@ -54,15 +54,22 @@
 
         <!-- Splash screen (Android 12+) -->
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:launchMode="singleTop"
-            android:theme="@style/Theme.IslamicHub.Splash"
-            android:windowSoftInputMode="adjustResize">
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.IslamicHub.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.IslamicHub"
+            android:windowSoftInputMode="adjustResize">
 
             <!-- Deep links for notification taps -->
             <intent-filter android:autoVerify="false">

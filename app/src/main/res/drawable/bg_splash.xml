@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    bg_splash.xml — premium splash screen background
+    Per source islamic.html #appSplash:
+      background: #064e3b url('./img/sidebar-header-bg.webp') center/cover
+      gradient overlay: linear-gradient(180deg, rgba(6,78,59,0.9) 0%, rgba(13,148,136,0.95) 100%)
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background image -->
+    <item>
+        <bitmap
+            android:src="@drawable/sidebar_header_bg"
+            android:gravity="center|fill" />
+    </item>
+    <!-- Emerald → teal gradient overlay (semi-transparent) -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#E6064E3B"
+                android:centerColor="#F00D9488"
+                android:endColor="#F00D9488" />
+        </shape>
+    </item>
+</layer-list>
