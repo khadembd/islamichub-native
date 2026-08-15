@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_premium_settings"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="16dp">
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Widget.IslamicHub.Card"
