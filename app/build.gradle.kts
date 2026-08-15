@@ -22,8 +22,8 @@ android {
         applicationId = "com.islamic.islam"
         minSdk = 24
         targetSdk = 34
-        versionCode = 7
-        versionName = "2.1.0"
+        versionCode = 8
+        versionName = "2.2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
@@ -40,15 +40,19 @@ android {
             versionNameSuffix = "-debug"
         }
         release {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Unsigned release build for now — CI will produce unsigned APK
-            // For play store signing, configure signingConfig in a separate
-            // keystore.properties-driven block.
+            // Signed release build using bundled keystore
+            signingConfig = signingConfigs.create("release") {
+                storeFile = file("islamichub.keystore")
+                storePassword = "islamichub123"
+                keyAlias = "islamichub-key"
+                keyPassword = "islamichub123"
+            }
         }
     }
 
