@@ -114,9 +114,16 @@ User question: $question"""
     }
 
     private suspend fun findLocalAnswer(question: String): String {
-        val answers = assets.answers()
-        for ((_, list) in answers.answers) {
-            for (a in list) {
+        try {
+            val answers = assets.answers()
+            // AnswerData has explicit category fields (namaz, roza, hajj, etc.)
+            val allAnswers = listOf(
+                answers.namaz, answers.roza, answers.hajj, answers.zakat,
+                answers.quran, answers.hadith, answers.iman, answers.ilm,
+                answers.taharah, answers.nikah, answers.tijarah, answers.jihad
+            ).flatten()
+
+            for (a in allAnswers) {
                 if (a.question.contains(question, true) || question.contains(a.question.take(20), true)) {
                     return buildString {
                         appendLine("📚 প্রশ্ন: ${a.question}")
@@ -129,6 +136,8 @@ User question: $question"""
                     }
                 }
             }
+        } catch (e: Exception) {
+            // Defensive
         }
         return "আপনার প্রশ্নটির সরাসরি উত্তর লোকাল ডেটাবেসে নেই। AI চালু করতে সেটিংসে API key দিন, অথবা আলেমদের সাথে পরামর্শ করুন।"
     }
