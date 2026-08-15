@@ -88,5 +88,6 @@
     <fragment android:id="@+id/hadith_api_dest" android:name="com.islamichub.feature.hadith.HadithApiFragment" android:label="হাদিস সংগ্রহ" tools:layout="@layout/fragment_generic_list" />
     <fragment android:id="@+id/reading_tracker_dest" android:name="com.islamichub.feature.tracker.ReadingTrackerFragment" android:label="পড়া ট্র্যাকার" tools:layout="@layout/fragment_reading_tracker" />
     <fragment android:id="@+id/hijri_dest" android:name="com.islamichub.feature.home.HijriDateFragment" android:label="হিজরি তারিখ" tools:layout="@layout/fragment_hijri_date" />
+    <fragment android:id="@+id/profile_dest" android:name="com.islamichub.feature.profile.ProfileFragment" android:label="প্রোফাইল" tools:layout="@layout/fragment_profile" />
 
 </navigation>

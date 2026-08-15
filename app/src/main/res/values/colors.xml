@@ -1,55 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Islamic Hub — Premium Color Palette
-    Per UI/UX Upgrade Master Plan §4:
-    - Primary: lavender-violet (#6D45C7)
-    - Background: warm ivory (#FCFAF7)
-    - Accent: muted gold (#C9A34E)
-    - Soft pastel prayer colors
+    Islamic Hub — Premium Color Palette (from source CSS :root variables)
+    মূল রঙ: emerald green (#2d8a64) + warm white bg + gold accents
+    Per source islamic.html CSS :root tokens
 -->
 <resources>
-    <!-- ========== Primary brand (lavender-violet) ========== -->
-    <color name="primary">#FF6D45C7</color>
-    <color name="primary_dark">#FF4F3295</color>
-    <color name="primary_light">#FF8B6DD9</color>
-    <color name="primary_soft">#FFF1EBFA</color>
+    <!-- ========== Primary brand (emerald green — source accent-primary) ========== -->
+    <color name="primary">#FF2D8A64</color>
+    <color name="primary_dark">#FF237052</color>
+    <color name="primary_light">#FF4ECCA3</color>
+    <color name="primary_soft">#FF6EE7B7</color>
+    <color name="primary_glow">#2E4ECCA3</color>
     <color name="on_primary">#FFFFFFFF</color>
 
-    <!-- ========== Backgrounds (warm white / ivory) ========== -->
+    <!-- ========== Backgrounds (warm white — source bg-main) ========== -->
     <color name="background">#FFFCFAF7</color>
     <color name="surface">#FFFFFFFF</color>
     <color name="surface_alt">#FFF7F4F8</color>
     <color name="card_bg">#FFFFFFFF</color>
     <color name="card_bg_alt">#FFF7F4F8</color>
+    <color name="card_overlay">#F0FFFFFF</color>
+    <color name="detail_overlay">#F7FFFFFF</color>
 
-    <!-- ========== Text ========== -->
-    <color name="text_primary">#FF24212B</color>
-    <color name="text_secondary">#FF77727D</color>
+    <!-- ========== Text (source text-primary/secondary) ========== -->
+    <color name="text_primary">#FF1A2E23</color>
+    <color name="text_secondary">#FF5A7968</color>
     <color name="text_tertiary">#FFABA6B0</color>
     <color name="text_on_primary">#FFFFFFFF</color>
     <color name="text_inverse">#FFFFFFFF</color>
 
-    <!-- ========== Gold accent ========== -->
-    <color name="gold">#FFC9A34E</color>
-    <color name="gold_dark">#FF9C7E2F</color>
-    <color name="gold_light">#FFE8C97A</color>
+    <!-- ========== Gold accent (source ih-gold) ========== -->
+    <color name="gold">#FFC49A2B</color>
+    <color name="gold_dark">#FF9C7E1F</color>
+    <color name="gold_light">#FFE8C879</color>
     <color name="gold_soft">#FFF7E8B5</color>
 
-    <!-- ========== Dividers ========== -->
-    <color name="divider">#FFECE8EF</color>
-    <color name="divider_strong">#FFD7D2DC</color>
+    <!-- ========== Emerald accent (source ih-emerald) ========== -->
+    <color name="emerald">#FF10B981</color>
+    <color name="emerald_soft">#FF6EE7B7</color>
+    <color name="emerald_dark">#FF064E3B</color>
 
-    <!-- ========== Prayer semantic colors (soft pastel) ========== -->
-    <color name="prayer_fajr">#FF6D45C7</color>           <!-- Soft Sunrise (lavender) -->
-    <color name="prayer_fajr_soft">#FFF1EBFA</color>
-    <color name="prayer_dhuhr">#FF3B82F6</color>          <!-- Soft Sky -->
-    <color name="prayer_dhuhr_soft">#FFE0EBFE</color>
-    <color name="prayer_asr">#FF8B5CF6</color>            <!-- Soft Violet -->
-    <color name="prayer_asr_soft">#FFEEE5FE</color>
-    <color name="prayer_maghrib">#FFEC4899</color>        <!-- Soft Rose -->
-    <color name="prayer_maghrib_soft">#FFFCE0EC</color>
-    <color name="prayer_isha">#FF6366F1</color>           <!-- Soft Night Blue -->
-    <color name="prayer_isha_soft">#FFE1E0FE</color>
+    <!-- ========== Amber accent (source ih-amber) ========== -->
+    <color name="amber">#FFD97706</color>
+    <color name="amber_soft">#FFFBBF24</color>
+
+    <!-- ========== Other accents ========== -->
+    <color name="red_accent">#FFDC2626</color>
+    <color name="red_soft">#FFF87171</color>
+    <color name="blue_accent">#FF2563EB</color>
+
+    <!-- ========== Dividers (source border-color) ========== -->
+    <color name="divider">#FFD4E5DC</color>
+    <color name="divider_strong">#FFB7D4C8</color>
+
+    <!-- ========== Prayer semantic colors (source dashboard colors) ========== -->
+    <color name="prayer_fajr">#FFEA580C</color>
+    <color name="prayer_fajr_bg">#FFFFF7ED</color>
+    <color name="prayer_dhuhr">#FF0284C7</color>
+    <color name="prayer_dhuhr_bg">#FFE0F2FE</color>
+    <color name="prayer_asr">#FF0D9488</color>
+    <color name="prayer_asr_bg">#FFF0FDFA</color>
+    <color name="prayer_maghrib">#FFD97706</color>
+    <color name="prayer_maghrib_bg">#FFFEF3C7</color>
+    <color name="prayer_isha">#FF6366F1</color>
+    <color name="prayer_isha_bg">#FFEEF2FF</color>
+
+    <!-- ========== Dashboard category colors (source --col-*) ========== -->
+    <color name="cat_quran_bg">#FFE0F2FE</color>
+    <color name="cat_quran_ic">#FF0284C7</color>
+    <color name="cat_namaz_bg">#FFF0FDFA</color>
+    <color name="cat_namaz_ic">#FF0D9488</color>
+    <color name="cat_time_bg">#FFFFF7ED</color>
+    <color name="cat_time_ic">#FFEA580C</color>
+    <color name="cat_dua_bg">#FFF0FDF4</color>
+    <color name="cat_dua_ic">#FF16A34A</color>
+    <color name="cat_qibla_bg">#FFFEF3C7</color>
+    <color name="cat_qibla_ic">#FFD97706</color>
+    <color name="cat_tasbih_bg">#FFECFDF5</color>
+    <color name="cat_tasbih_ic">#FF059669</color>
+    <color name="cat_tracker_bg">#FFFAF5FF</color>
+    <color name="cat_tracker_ic">#FF9333EA</color>
+    <color name="cat_names_bg">#FFFFF1F2</color>
+    <color name="cat_names_ic">#FFE11D48</color>
+    <color name="cat_qa_bg">#FFF5F5F7</color>
+    <color name="cat_qa_ic">#FF52525B</color>
+    <color name="cat_ai_bg">#FFEEF2FF</color>
+    <color name="cat_ai_ic">#FF4F46E5</color>
+    <color name="cat_tajweed_bg">#FFFDF4FF</color>
+    <color name="cat_tajweed_ic">#FFC026D3</color>
+    <color name="cat_vision_bg">#FFECFEFF</color>
+    <color name="cat_vision_ic">#FF0891B2</color>
+    <color name="cat_sirat_bg">#FFE0F2FE</color>
+    <color name="cat_sirat_ic">#FF0284C7</color>
+    <color name="cat_prophets_bg">#FFFFF7ED</color>
+    <color name="cat_prophets_ic">#FFD97706</color>
+    <color name="cat_khalifas_bg">#FFF0FDF4</color>
+    <color name="cat_khalifas_ic">#FF16A34A</color>
+    <color name="cat_error_bg">#FFFEF2F2</color>
+    <color name="cat_error_ic">#FFDC2626</color>
+    <color name="cat_bookmark_bg">#FFFEF3C7</color>
+    <color name="cat_bookmark_ic">#FFD97706</color>
+    <color name="cat_settings_bg">#FFF3F4F6</color>
+    <color name="cat_settings_ic">#FF4B5563</color>
+    <color name="cat_daily_bg">#FFEDE9FE</color>
+    <color name="cat_daily_ic">#FF7C3AED</color>
 
     <!-- ========== Status ========== -->
     <color name="status_success">#FF10B981</color>
@@ -67,19 +121,20 @@
     <color name="scrim_gradient_top">#1A000000</color>
     <color name="scrim_gradient_bottom">#66000000</color>
 
-    <!-- ========== Backward-compat (legacy names) ========== -->
-    <color name="emerald_primary">#FF6D45C7</color>
-    <color name="emerald_light">#FF8B6DD9</color>
-    <color name="emerald_dark">#FF4F3295</color>
+    <!-- ========== Dark theme ========== -->
+    <color name="dark_bg">#FF0E1A14</color>
+    <color name="dark_surface">#FF15241C</color>
+    <color name="dark_card">#FF1F2F26</color>
+    <color name="text_on_primary_dark">#FFE0E0E0</color>
+
+    <!-- ========== Backward compat (legacy names) ========== -->
+    <color name="emerald_primary">#FF2D8A64</color>
+    <color name="emerald_light2">#FF4ECCA3</color>
     <color name="cream_bg">#FFFCFAF7</color>
     <color name="surface_light">#FFFFFFFF</color>
     <color name="card_light">#FFF7F4F8</color>
-    <color name="dark_bg">#FF1A1620</color>
-    <color name="dark_surface">#FF26222E</color>
-    <color name="dark_card">#FF322C3E</color>
-    <color name="gold_accent">#FFC9A34E</color>
-    <color name="gold_light2">#FFE8C97A</color>
-    <color name="text_on_primary_dark">#FFE0E0E0</color>
+    <color name="gold_accent">#FFC49A2B</color>
+    <color name="gold_light2">#FFE8C879</color>
     <color name="black_scrim_60">#99000000</color>
     <color name="black_scrim_30">#4D000000</color>
 </resources>

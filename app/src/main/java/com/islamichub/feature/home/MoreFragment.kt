@@ -53,6 +53,7 @@ class MoreFragment : Fragment() {
                 MoreItem(R.drawable.ic_quran,    "দৈনিক বিষয়বস্তু", "আজকের আয়াত/হাদিস/দোয়া")  { goto(R.id.daily_content_dest) },
                 MoreItem(R.drawable.ic_compass,  "হিজরি তারিখ",      "ইসলামিক ক্যালেন্ডার")       { goto(R.id.hijri_dest) },
                 MoreItem(R.drawable.ic_lock,     "অ্যাপ লক",          "বায়োমেট্রিক • পিন ফলব্যাক") { goto(R.id.app_lock_dest) },
+                MoreItem(R.drawable.ic_prayer,   "প্রোফাইল",           "ব্যবহারকারী • পরিসংখ্যান • সিঙ্ক") { goto(R.id.profile_dest) },
                 MoreItem(R.drawable.ic_settings, "সেটিংস",            "থিম • ভাষা • মাযহাব • নোটিফিকেশন") { goto(R.id.settings_dest) }
             )
             binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

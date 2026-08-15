@@ -22,8 +22,8 @@ android {
         applicationId = "com.islamic.islam"
         minSdk = 24
         targetSdk = 34
-        versionCode = 8
-        versionName = "2.2.0"
+        versionCode = 9
+        versionName = "3.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
