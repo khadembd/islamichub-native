@@ -1,40 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- item_more_menu.xml — list row for the "More" screen -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    item_more_menu.xml — premium menu row
+    Per source islamic.html sb-item style:
+    - Soft icon circle with tinted background
+    - Title + subtitle
+    - Chevron right indicator
+-->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.IslamicHub.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center_vertical"
-    android:padding="16dp"
-    android:background="?attr/selectableItemBackground"
+    android:layout_marginHorizontal="@dimen/spacing_sm"
+    android:layout_marginVertical="@dimen/spacing_xs"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="@dimen/radius_card"
+    app:cardElevation="1dp"
+    app:strokeColor="@color/divider"
+    app:strokeWidth="0.5dp">
 
-    <ImageView
-        android:id="@+id/menuIcon"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:contentDescription="@null"
-        app:tint="@color/emerald_primary"
-        tools:src="@drawable/ic_bookmark" />
-
-    <TextView
-        android:id="@+id/menuTitle"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_weight="1"
-        android:textAppearance="@style/TextAppearance.IslamicHub.Title"
-        android:textSize="16sp"
-        tools:text="বুকমার্ক" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_md">
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_chevron_right"
-        app:tint="@color/text_secondary" />
+        <!-- Icon with soft tinted background -->
+        <FrameLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp">
 
-</LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_icon_circle" />
+
+            <ImageView
+                android:id="@+id/menuIcon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_gravity="center"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_quran"
+                app:tint="@color/primary" />
+
+        </FrameLayout>
+
+        <!-- Title + subtitle -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_md"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/menuTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.IslamicHub.Title"
+                android:textSize="@dimen/text_body_lg"
+                android:textStyle="bold"
+                tools:text="কুরআন" />
+
+            <TextView
+                android:id="@+id/menuSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textAppearance="@style/TextAppearance.IslamicHub.Body"
+                android:textColor="@color/text_tertiary"
+                android:textSize="@dimen/text_caption"
+                tools:text="১১৪ সূরা • অডিও সহ" />
+
+        </LinearLayout>
+
+        <!-- Chevron -->
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_chevron_right"
+            app:tint="@color/text_tertiary" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

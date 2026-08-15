@@ -1,10 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    fragment_more.xml — premium More menu screen
+    Per source islamic.html sidebar structure:
+    - Premium image background (sidebar_premium_bg)
+    - Section headers grouping features
+    - Grid of all 20+ features with icons + descriptions
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/recyclerView"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:colorBackground"
-    android:clipToPadding="false"
-    android:paddingTop="8dp"
-    android:paddingBottom="16dp" />
+    android:background="@drawable/bg_premium_more">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_2xl">
+
+            <!-- Section header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/screen_padding"
+                android:layout_marginBottom="@dimen/spacing_sm"
+                android:text="সব ফিচার"
+                android:textAppearance="@style/TextAppearance.IslamicHub.Headline"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/text_h2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/spacing_sm"
+                android:paddingBottom="@dimen/spacing_xl" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
