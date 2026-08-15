@@ -20,14 +20,24 @@ class QuranViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val extras = assets.namazExtras()
-            _surahs.value = extras.namazSurahs.map { s ->
-                ContentCardItem(
-                    id = s.id.toString(),
-                    title = s.name,
-                    arabic = s.arabic,
-                    subtitle = s.transliteration,
-                    body = s.bangla
+            try {
+                val extras = assets.namazExtras()
+                _surahs.value = extras.namazSurahs.map { s ->
+                    ContentCardItem(
+                        id = s.id.toString(),
+                        title = s.name,
+                        arabic = s.arabic,
+                        subtitle = s.transliteration,
+                        body = s.bangla
+                    )
+                }
+            } catch (e: Exception) {
+                _surahs.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "কুরআন ডেটা লোড করা যায়নি: ${e.message}"
+                    )
                 )
             }
         }

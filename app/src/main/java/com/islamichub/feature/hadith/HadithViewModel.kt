@@ -20,20 +20,40 @@ class HadithViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val primary = assets.hadith()
-            val extended = assets.extendedHadith()
-            // Per migration plan §14: extended hadith uses `items` (not `hadiths`).
-            val combined = (primary.hadiths + extended.items).map { h ->
-                ContentCardItem(
-                    id = h.id.toString(),
-                    title = h.title,
-                    arabic = h.arabic,
-                    subtitle = h.narrator,
-                    body = h.bangla,
-                    reference = h.reference
+            try {
+                val primary = assets.hadith()
+                val extended = assets.extendedHadith()
+                // Primary hadiths
+                val combined = primary.hadiths.map { h ->
+                    ContentCardItem(
+                        id = h.id.toString(),
+                        title = h.title,
+                        arabic = h.arabic,
+                        subtitle = h.narrator,
+                        body = h.bangla,
+                        reference = h.reference
+                    )
+                }.toMutableList()
+                // Extended hadith topics (hadith_topics, NOT items)
+                extended.hadith_topics.forEach { topic ->
+                    combined += ContentCardItem(
+                        id = "ext_${topic.id}",
+                        title = topic.name,
+                        arabic = topic.arabic,
+                        body = topic.description,
+                        subtitle = "${topic.category} • ${topic.subcategory}"
+                    )
+                }
+                _hadiths.value = combined
+            } catch (e: Exception) {
+                _hadiths.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "হাদিস লোড করা যায়নি: ${e.message}"
+                    )
                 )
             }
-            _hadiths.value = combined
         }
     }
 }

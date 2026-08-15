@@ -3,32 +3,28 @@ package com.islamichub.data.model
 import kotlinx.serialization.Serializable
 
 /**
- * Namaz (Salah) — categories + prayers + extras
+ * Namaz (Salah) — categories + prayers + extras + shikkha
  * Sources:
  *   - namaz-data.js          → namaz.json         (categories + prayers)
  *   - namaz-extras-data.js   → namaz_extras.json  (short surahs for salah recitation)
- *   - extended-namaz-data.js → extended_namaz.json (additional rules)
  *   - namazshikkha-data.js   → namaz_shikkha.json (step-by-step learning)
- *
- * Per migration plan §15: namaz-data.js and namazshikkha-data.js both define
- * `window.namazData` with different shapes. Native Kotlin models keep them
- * completely separate — NamazData vs NamazShikkhaData — to avoid the collision.
  */
+
 @Serializable
 data class NamazCategory(
-    val id: String,
-    val name: String,
-    val icon: String,
-    val color: String
+    val id: String = "",
+    val name: String = "",
+    val icon: String = "",
+    val color: String = ""
 )
 
 @Serializable
 data class NamazPrayer(
-    val id: String,
-    val name: String,
-    val time: String,
-    val rakat: String,
-    val description: String
+    val id: String = "",
+    val name: String = "",
+    val time: String = "",
+    val rakat: String = "",
+    val description: String = ""
 )
 
 @Serializable
@@ -37,7 +33,7 @@ data class NamazData(
     val prayers: List<NamazPrayer> = emptyList()
 )
 
-/** namazshikkha-data.js — different shape from NamazData, kept separate. */
+/** namazshikkha-data.js → namaz_shikkha.json — actual structure */
 @Serializable
 data class NamazShikkhaStep(
     val id: String = "",
@@ -50,24 +46,38 @@ data class NamazShikkhaStep(
 )
 
 @Serializable
+data class NamazShikkhaCategory(
+    val id: String = "",
+    val name: String = "",
+    val icon: String = "",
+    val color: String = "",
+    val steps: List<NamazShikkhaStep> = emptyList()
+)
+
+@Serializable
 data class NamazShikkhaData(
     val metadata: Map<String, String> = emptyMap(),
-    val steps: List<NamazShikkhaStep> = emptyList(),
-    val categories: List<NamazCategory> = emptyList()
+    val common_steps: Map<String, NamazShikkhaStep> = emptyMap(),
+    val categories: List<NamazShikkhaCategory> = emptyList()
 )
 
 @Serializable
 data class NamazSurah(
-    val id: Int,
-    val name: String,
-    val arabic: String,
-    val transliteration: String,
-    val bangla: String,
+    val id: Int = 0,
+    val name: String = "",
+    val arabic: String = "",
+    val transliteration: String = "",
+    val bangla: String = "",
     val ayahs: Int = 0,
     val audio: String = ""
 )
 
 @Serializable
 data class NamazExtras(
-    val namazSurahs: List<NamazSurah> = emptyList()
+    val namazSurahs: List<NamazSurah> = emptyList(),
+    val namazImportantDuas: List<NamazSurah> = emptyList(),
+    val kalimas: List<NamazSurah> = emptyList(),
+    val namazDuas: List<NamazSurah> = emptyList(),
+    val allDuas: List<NamazSurah> = emptyList(),
+    val koumiHadiths: List<NamazSurah> = emptyList()
 )

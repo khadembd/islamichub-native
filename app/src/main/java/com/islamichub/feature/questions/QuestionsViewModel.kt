@@ -20,26 +20,68 @@ class QuestionsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val questions = assets.questions()
-            val answers = assets.answers()
-            // Per migration plan §14: source globals use `questionData` and
-            // `ansData` (not `QUESTION_DATA`). Match each question with its
-            // answer from ansData.answers (keyed by category).
-            val flat = mutableListOf<ContentCardItem>()
-            questions.categories.forEach { (catId, cat) ->
-                val catAnswers = answers.answers[catId].orEmpty()
-                cat.questions.forEachIndexed { idx, q ->
-                    val ans = catAnswers.getOrNull(idx)
-                    flat += ContentCardItem(
-                        id = "${catId}_$idx",
-                        title = q,
-                        body = ans?.answer.orEmpty(),
-                        subtitle = cat.name,
-                        reference = ans?.reference.orEmpty()
-                    )
+            try {
+                val questions = assets.questions()
+                val answers = assets.answers()
+                val flat = mutableListOf<ContentCardItem>()
+
+                // questions.json has category keys: namaz, roza, hajj, etc.
+                // Each category has { name, icon, color, questions[] }
+                val categories = listOf(
+                    "namaz" to questions.namaz,
+                    "roza" to questions.roza,
+                    "hajj" to questions.hajj,
+                    "zakat" to questions.zakat,
+                    "quran" to questions.quran,
+                    "hadith" to questions.hadith,
+                    "iman" to questions.iman,
+                    "ilm" to questions.ilm,
+                    "taharah" to questions.taharah,
+                    "nikah" to questions.nikah,
+                    "tijarah" to questions.tijarah,
+                    "jihad" to questions.jihad
+                )
+
+                categories.forEach { (catId, cat) ->
+                    // Get answers for this category
+                    val catAnswers = when (catId) {
+                        "namaz" -> answers.namaz
+                        "roza" -> answers.roza
+                        "hajj" -> answers.hajj
+                        "zakat" -> answers.zakat
+                        "quran" -> answers.quran
+                        "hadith" -> answers.hadith
+                        "iman" -> answers.iman
+                        "ilm" -> answers.ilm
+                        "taharah" -> answers.taharah
+                        "nikah" -> answers.nikah
+                        "tijarah" -> answers.tijarah
+                        "jihad" -> answers.jihad
+                        else -> emptyList()
+                    }
+
+                    cat.questions.forEachIndexed { idx, q ->
+                        val ans = catAnswers.getOrNull(idx)
+                        flat += ContentCardItem(
+                            id = "${catId}_$idx",
+                            title = q,
+                            body = ans?.answer.orEmpty(),
+                            subtitle = cat.name,
+                            reference = ans?.reference.orEmpty()
+                        )
+                    }
                 }
+
+                _items.value = flat
+            } catch (e: Exception) {
+                _items.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "প্রশ্নোত্তর লোড করা যায়নি: ${e.message}"
+                    )
+                )
             }
-            _items.value = flat
         }
     }
 }

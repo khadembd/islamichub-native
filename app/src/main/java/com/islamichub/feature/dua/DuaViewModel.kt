@@ -20,15 +20,25 @@ class DuaViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val collection = assets.duas()
-            _duas.value = collection.duas.map { dua ->
-                ContentCardItem(
-                    id = dua.id,
-                    title = dua.title,
-                    arabic = dua.arabic,
-                    subtitle = dua.transliteration,
-                    body = dua.bangla,
-                    reference = dua.ref
+            try {
+                val collection = assets.duas()
+                _duas.value = collection.duas.map { dua ->
+                    ContentCardItem(
+                        id = dua.id,
+                        title = dua.title,
+                        arabic = dua.arabic,
+                        subtitle = dua.transliteration,
+                        body = dua.bangla,
+                        reference = dua.ref
+                    )
+                }
+            } catch (e: Exception) {
+                _duas.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "দোয়া লোড করা যায়নি: ${e.message}"
+                    )
                 )
             }
         }

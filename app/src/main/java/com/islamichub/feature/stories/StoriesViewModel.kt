@@ -20,17 +20,26 @@ class StoriesViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val data = assets.stories()
-            // Per migration plan §14: prophets/khalifas are arrays, AND meraj
-            // is included in story categories.
-            val combined = data.prophets + data.khalifas + data.meraj + data.sirat
-            _stories.value = combined.mapIndexed { idx, s ->
-                ContentCardItem(
-                    id = s.id.ifEmpty { "story_$idx" },
-                    title = s.title,
-                    arabic = s.arabic,
-                    subtitle = s.period,
-                    body = s.description.ifEmpty { s.bangla }
+            try {
+                val data = assets.stories()
+                // islamic_stories.json has: meraj, sirat, prophets, khalifas (all arrays)
+                val combined = data.prophets + data.khalifas + data.meraj + data.sirat
+                _stories.value = combined.mapIndexed { idx, s ->
+                    ContentCardItem(
+                        id = s.id.ifEmpty { "story_$idx" },
+                        title = s.title,
+                        arabic = s.arabic,
+                        subtitle = s.period,
+                        body = s.description.ifEmpty { s.bangla }
+                    )
+                }
+            } catch (e: Exception) {
+                _stories.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "গল্প লোড করা যায়নি: ${e.message}"
+                    )
                 )
             }
         }

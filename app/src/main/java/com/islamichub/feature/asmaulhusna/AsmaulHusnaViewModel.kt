@@ -20,14 +20,23 @@ class AsmaulHusnaViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            // Per migration plan §14: data uses `transliteration` field (not `bangla`).
-            _names.value = assets.asmaulHusna().map { n ->
-                ContentCardItem(
-                    id = n.id.toString(),
-                    title = "${n.id}. ${n.transliteration} — ${n.meaning}",
-                    arabic = n.arabic,
-                    body = n.explanation,
-                    subtitle = "আমল: ${n.amal}"
+            try {
+                _names.value = assets.asmaulHusna().map { n ->
+                    ContentCardItem(
+                        id = n.id.toString(),
+                        title = "${n.id}. ${n.transliteration} — ${n.meaning}",
+                        arabic = n.arabic,
+                        body = n.explanation,
+                        subtitle = "আমল: ${n.amal}"
+                    )
+                }
+            } catch (e: Exception) {
+                _names.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "আসমাউল হুসনা লোড করা যায়নি: ${e.message}"
+                    )
                 )
             }
         }

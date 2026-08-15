@@ -20,18 +20,29 @@ class MisconceptionsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val data = assets.misconceptions()
-            // Per migration plan §14: misconceptions data has BOTH a `categories`
-            // map and an `items` array — we flatten both for v1.
-            val flat = data.items.toMutableList()
-            data.categories.values.forEach { flat += it }
-            _items.value = flat.distinctBy { it.id.ifEmpty { it.title } }.mapIndexed { idx, m ->
-                ContentCardItem(
-                    id = m.id.ifEmpty { "misc_$idx" },
-                    title = m.title.ifEmpty { m.question },
-                    body = m.answer,
-                    reference = m.reference,
-                    subtitle = m.category
+            try {
+                val data = assets.misconceptions()
+                // misconceptions.json has categories[] with misconceptions[] inside each
+                val flat = mutableListOf<ContentCardItem>()
+                data.categories.forEach { cat ->
+                    cat.misconceptions.forEach { m ->
+                        flat += ContentCardItem(
+                            id = m.id.ifEmpty { "misc_${cat.id}_${flat.size}" },
+                            title = m.title.ifEmpty { m.question },
+                            body = m.answer,
+                            reference = m.reference,
+                            subtitle = cat.name.ifEmpty { cat.title }
+                        )
+                    }
+                }
+                _items.value = flat
+            } catch (e: Exception) {
+                _items.value = listOf(
+                    ContentCardItem(
+                        id = "error",
+                        title = "ত্রুটি",
+                        body = "ভুল ধারণা লোড করা যায়নি: ${e.message}"
+                    )
                 )
             }
         }
