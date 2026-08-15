@@ -40,7 +40,7 @@ class DailyContentViewModel @Inject constructor(
         } catch (e: Exception) { _dailyAyah.value = null }
 
         try {
-            val hadiths = assets.hadith().hadiths + assets.extendedHadith().items
+            val hadiths = assets.hadith().hadiths
             val dayOfYear = LocalDate.now().dayOfYear
             _dailyHadith.value = hadiths.getOrNull(dayOfYear % hadiths.size)
         } catch (e: Exception) { _dailyHadith.value = null }
