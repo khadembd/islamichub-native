@@ -65,7 +65,7 @@
     <color name="prayer_isha">#FF6366F1</color>
     <color name="prayer_isha_bg">#FFEEF2FF</color>
 
-    <!-- ========== Dashboard category colors (source --col-*) ========== -->
+    <!-- ========== Dashboard category colors (source col-* tokens) ========== -->
     <color name="cat_quran_bg">#FFE0F2FE</color>
     <color name="cat_quran_ic">#FF0284C7</color>
     <color name="cat_namaz_bg">#FFF0FDFA</color>
