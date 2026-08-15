@@ -15,10 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-/**
- * HadithApiFragment — browse Hadith collections from fawazahmed0/hadith-api.
- * Shows book list → tap to open → hadith cards with grades + references.
- */
 @AndroidEntryPoint
 class HadithApiFragment : Fragment() {
     private var _binding: FragmentGenericListBinding? = null
@@ -28,42 +24,52 @@ class HadithApiFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGenericListBinding.inflate(inflater, container, false)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.books.collectLatest { books ->
-                if (books.isNotEmpty()) {
-                    adapter.submitList(books.map { (id, name) ->
-                        ContentCardItem(
-                            id = id,
-                            title = name,
-                            subtitle = "হাদিস সংগ্রহ",
-                            body = ""
-                        ) { viewModel.openBook(id) }
-                    })
+        try {
+            binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            binding.recyclerView.adapter = adapter
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.books.collectLatest { books ->
+                    try {
+                        if (books.isNotEmpty()) {
+                            adapter.submitList(books.map { (id, name) ->
+                                ContentCardItem(
+                                    id = id,
+                                    title = name,
+                                    subtitle = "হাদিস সংগ্রহ",
+                                    body = ""
+                                ) { viewModel.openBook(id) }
+                            })
+                        }
+                    } catch (_: Exception) {}
                 }
             }
-        }
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.hadiths.collectLatest { hadiths ->
-                if (hadiths.isNotEmpty()) {
-                    adapter.submitList(hadiths.take(50).map { h ->
-                        val grade = h.grades.firstOrNull()?.grade.orEmpty()
-                        ContentCardItem(
-                            id = "h_${h.hadithnumber}",
-                            title = "হাদিস নং ${bengaliNum(h.hadithnumber)}",
-                            body = h.text,
-                            reference = if (grade.isNotBlank()) "গ্রেড: $grade" else "",
-                            subtitle = "সনদ নং ${h.hadithnumber}"
-                        )
-                    })
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.hadiths.collectLatest { hadiths ->
+                    try {
+                        if (hadiths.isNotEmpty()) {
+                            adapter.submitList(hadiths.take(50).map { h ->
+                                val grade = h.grades.firstOrNull()?.grade.orEmpty()
+                                ContentCardItem(
+                                    id = "h_${h.hadithnumber}",
+                                    title = "হাদিস নং ${bengaliNum(h.hadithnumber)}",
+                                    body = h.text,
+                                    reference = if (grade.isNotBlank()) "গ্রেড: $grade" else "",
+                                    subtitle = "সনদ নং ${h.hadithnumber}"
+                                )
+                            })
+                        }
+                    } catch (_: Exception) {}
                 }
             }
+        } catch (e: Exception) {
+            // Defensive
         }
     }
 

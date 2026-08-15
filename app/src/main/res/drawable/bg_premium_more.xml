@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bg_premium_more.xml — More menu premium background -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap android:src="@drawable/sidebar_premium_bg" android:gravity="fill" />
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#99FCFAF7"
+                android:centerColor="#CCFCFAF7"
+                android:endColor="#FFFCFAF7" />
+        </shape>
+    </item>
+</layer-list>

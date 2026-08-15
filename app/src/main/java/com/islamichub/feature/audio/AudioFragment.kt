@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.core.content.ContextCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
-import androidx.media3.common.Player
 import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import com.google.common.util.concurrent.ListenableFuture
@@ -22,17 +21,7 @@ import com.islamichub.databinding.FragmentGenericListBinding
 import com.islamichub.services.AudioPlaybackService
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
-/**
- * AudioFragment — plays Namaz MP3 audio using Media3 + MediaSession.
- *
- * Audio list:
- *  - azan2, takbir_tahrimah, tasmiah, taawwuz, dua_al_istiftah, fatiha,
- *    ikhlas, ruku, sajdah, jalsah, qawamah, qunut, tashahud, salat_alan_nabi_darud, salam
- *
- * Background playback + media notification controls via AudioPlaybackService.
- */
 @AndroidEntryPoint
 class AudioFragment : Fragment() {
     private var _binding: FragmentGenericListBinding? = null
@@ -44,30 +33,40 @@ class AudioFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentGenericListBinding.inflate(inflater, container, false)
-        binding.recyclerView.adapter = adapter
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.audioList.observe(viewLifecycleOwner) { list ->
-            adapter.submitList(list.map { item ->
-                item.copy(onClick = { playAudio(item.id) })
-            })
+        try {
+            binding.recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(requireContext())
+            binding.recyclerView.adapter = adapter
+            viewModel.audioList.observe(viewLifecycleOwner) { list ->
+                try {
+                    adapter.submitList(list.map { item ->
+                        item.copy(onClick = { playAudio(item.id) })
+                    })
+                } catch (_: Exception) {}
+            }
+            initializeController()
+        } catch (e: Exception) {
+            // Defensive
         }
-        initializeController()
     }
 
     private fun initializeController() {
-        val sessionToken = SessionToken(requireContext(), ComponentName(requireContext(), AudioPlaybackService::class.java))
-        controllerFuture = MediaController.Builder(requireContext(), sessionToken).buildAsync()
-        controllerFuture?.addListener({
-            try {
-                controller = controllerFuture?.get()
-            } catch (e: Exception) {
-                // Defensive: controller init may fail in some edge cases
-            }
-        }, ContextCompat.getMainExecutor(requireContext()))
+        try {
+            val sessionToken = SessionToken(
+                requireContext(),
+                ComponentName(requireContext(), AudioPlaybackService::class.java)
+            )
+            controllerFuture = MediaController.Builder(requireContext(), sessionToken).buildAsync()
+            controllerFuture?.addListener({
+                try { controller = controllerFuture?.get() } catch (_: Exception) {}
+            }, ContextCompat.getMainExecutor(requireContext()))
+        } catch (e: Exception) {
+            // Defensive
+        }
     }
 
     private fun playAudio(rawResName: String) {
@@ -95,11 +94,7 @@ class AudioFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        try {
-            controllerFuture?.let { MediaController.releaseFuture(it) }
-        } catch (e: Exception) {
-            // Defensive
-        }
+        try { controllerFuture?.let { MediaController.releaseFuture(it) } } catch (_: Exception) {}
         controller = null
         _binding = null
     }

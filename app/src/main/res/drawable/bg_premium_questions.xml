@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- bg_premium_questions.xml — Q&A screen premium background -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap android:src="@drawable/hero_topics_premium" android:gravity="fill" />
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#99063824"
+                android:endColor="#CC064E3B" />
+        </shape>
+    </item>
+</layer-list>

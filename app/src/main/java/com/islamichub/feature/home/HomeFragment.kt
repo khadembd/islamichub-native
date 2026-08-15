@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.islamichub.R
-import com.islamichub.core.ui.ContentCardItem
 import com.islamichub.databinding.FragmentHomeBinding
 import com.islamichub.databinding.ItemPrayerDotBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,15 +21,11 @@ import java.util.Date
 import java.util.Locale
 
 /**
- * HomeFragment — premium landing screen.
+ * HomeFragment — premium landing screen with crash-proofing.
  *
- * Per UI/UX plan §9-10:
- *  - Greeting / Date
- *  - Current Prayer Hero (image bg + countdown timer)
- *  - 5-Prayer Progress Row
- *  - Quick Actions (3-column grid)
- *  - Daily Ayah card
- *  - Daily Hadith card
+ * All UI setup and ViewModel observation wrapped in try/catch.
+ * Prayer progress rendering is defensive — if binding fails, screen stays empty
+ * but app does not crash.
  */
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -48,9 +43,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupGreeting()
-        setupFeatureGrid()
-        observeViewModel()
+        try { setupGreeting() } catch (e: Exception) { /* Defensive */ }
+        try { setupFeatureGrid() } catch (e: Exception) { /* Defensive */ }
+        try { observeViewModel() } catch (e: Exception) { /* Defensive */ }
     }
 
     private fun setupGreeting() {
@@ -90,30 +85,35 @@ class HomeFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.nextPrayerInfo.observe(viewLifecycleOwner) { info ->
-            binding.nextPrayerName.text = info.name
-            binding.nextPrayerTime.text = info.timeText
-            startCountdown(info.timeMillis)
+            try {
+                binding.nextPrayerName.text = info?.name ?: "—"
+                binding.nextPrayerTime.text = info?.timeText ?: "—"
+                if (info != null) startCountdown(info.timeMillis)
+            } catch (e: Exception) { /* Defensive */ }
         }
 
         viewModel.prayerProgress.observe(viewLifecycleOwner) { rows ->
-            renderPrayerProgress(rows)
+            try { renderPrayerProgress(rows) } catch (e: Exception) { /* Defensive */ }
         }
 
         viewModel.dailyAyah.observe(viewLifecycleOwner) { ayah ->
-            binding.dailyAyahArabic.text = ayah?.arabic.orEmpty()
-            binding.dailyAyahTranslation.text = ayah?.meaning.orEmpty()
-            binding.dailyAyahRef.text = ayah?.transliteration.orEmpty()
+            try {
+                binding.dailyAyahArabic.text = ayah?.arabic.orEmpty()
+                binding.dailyAyahTranslation.text = ayah?.meaning.orEmpty()
+                binding.dailyAyahRef.text = ayah?.transliteration.orEmpty()
+            } catch (e: Exception) { /* Defensive */ }
         }
 
         viewModel.dailyHadith.observe(viewLifecycleOwner) { hadith ->
-            binding.dailyHadithArabic.text = hadith?.arabic.orEmpty()
-            binding.dailyHadithTranslation.text = hadith?.bangla.orEmpty()
-            binding.dailyHadithRef.text = hadith?.reference.orEmpty()
+            try {
+                binding.dailyHadithArabic.text = hadith?.arabic.orEmpty()
+                binding.dailyHadithTranslation.text = hadith?.bangla.orEmpty()
+                binding.dailyHadithRef.text = hadith?.reference.orEmpty()
+            } catch (e: Exception) { /* Defensive */ }
         }
     }
 
     private fun renderPrayerProgress(rows: List<PrayerProgressRow>) {
-        // Use bindings for the 5 included layouts
         val bindings = listOf(
             ItemPrayerDotBinding.bind(binding.prayerFajr.root),
             ItemPrayerDotBinding.bind(binding.prayerDhuhr.root),
@@ -125,7 +125,6 @@ class HomeFragment : Fragment() {
             val b = bindings.getOrNull(idx) ?: return@forEachIndexed
             b.prayerDotName.text = row.name
             b.prayerDotTime.text = row.timeText
-            // Tint dot color based on state
             val color = when (row.state) {
                 PrayerState.CURRENT   -> requireContext().getColor(R.color.primary)
                 PrayerState.NEXT      -> requireContext().getColor(R.color.gold)
@@ -147,14 +146,16 @@ class HomeFragment : Fragment() {
         }
         countdownTimer = object : CountDownTimer(remaining, 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                val totalSec = millisUntilFinished / 1000
-                val h = totalSec / 3600
-                val m = (totalSec % 3600) / 60
-                val s = totalSec % 60
-                binding.countdownText.text = "শেষ হবে ${String.format("%02d:%02d:%02d", h, m, s)}"
+                try {
+                    val totalSec = millisUntilFinished / 1000
+                    val h = totalSec / 3600
+                    val m = (totalSec % 3600) / 60
+                    val s = totalSec % 60
+                    binding.countdownText.text = "শেষ হবে ${String.format("%02d:%02d:%02d", h, m, s)}"
+                } catch (e: Exception) { /* Defensive */ }
             }
             override fun onFinish() {
-                binding.countdownText.text = ""
+                try { binding.countdownText.text = "" } catch (e: Exception) {}
             }
         }.start()
     }
