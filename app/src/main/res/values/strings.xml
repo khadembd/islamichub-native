@@ -7,11 +7,12 @@
 <resources>
     <string name="app_name">Islamic Hub</string>
 
-    <!-- Bottom navigation -->
-    <string name="nav_home">Home</string>
-    <string name="nav_quran">Quran</string>
-    <string name="nav_prayer">Prayer</string>
-    <string name="nav_more">More</string>
+    <!-- Bottom navigation — per Master Plan §22: Home, Daily, Amal, Qada, Settings -->
+    <string name="nav_home">হোম</string>
+    <string name="nav_daily">দৈনিক</string>
+    <string name="nav_amal">আমল</string>
+    <string name="nav_qada">কাজা</string>
+    <string name="nav_settings">সেটিংস</string>
 
     <!-- Home screen sections -->
     <string name="section_quran">Quran</string>

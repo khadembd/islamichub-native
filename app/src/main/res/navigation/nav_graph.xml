@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    nav_graph.xml — application navigation graph
-    প্রতিটি গন্তব্য একটি Fragment। শুধুমাত্র native fragments — কোনো WebView নয়।
+    nav_graph.xml — per Master Plan §22-23:
+    Bottom nav: Home, Daily, Amal, Qada, Settings
+    Amal contains: Quran, Hadith, Dua, Namaz, Zikr, Qibla, Stories, etc.
 -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +10,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/home_dest">
 
-    <!-- ============ Bottom nav top-level destinations ============ -->
+    <!-- ============ Bottom nav top-level destinations (5) ============ -->
 
     <fragment
         android:id="@+id/home_dest"
@@ -40,28 +41,40 @@
         <action android:id="@+id/action_home_to_hadith_api" app:destination="@id/hadith_api_dest" />
         <action android:id="@+id/action_home_to_reading_tracker" app:destination="@id/reading_tracker_dest" />
         <action android:id="@+id/action_home_to_hijri" app:destination="@id/hijri_dest" />
+        <action android:id="@+id/action_home_to_profile" app:destination="@id/profile_dest" />
     </fragment>
 
+    <!-- Daily = Prayer Times timeline -->
     <fragment
-        android:id="@+id/quran_dest"
-        android:name="com.islamichub.feature.quran.QuranFragment"
-        android:label="@string/section_quran"
-        tools:layout="@layout/fragment_quran" />
-
-    <fragment
-        android:id="@+id/prayer_dest"
+        android:id="@+id/daily_dest"
         android:name="com.islamichub.feature.prayer.PrayerTimesFragment"
-        android:label="@string/section_qibla"
+        android:label="@string/nav_daily"
         tools:layout="@layout/fragment_prayer_times" />
 
+    <!-- Amal = All features grid (was MoreFragment) -->
     <fragment
-        android:id="@+id/more_dest"
+        android:id="@+id/amal_dest"
         android:name="com.islamichub.feature.home.MoreFragment"
-        android:label="@string/nav_more"
+        android:label="@string/nav_amal"
         tools:layout="@layout/fragment_more" />
+
+    <!-- Qada = Salah Tracker (missed prayers) -->
+    <fragment
+        android:id="@+id/qada_dest"
+        android:name="com.islamichub.feature.tracker.SalahTrackerFragment"
+        android:label="@string/nav_qada"
+        tools:layout="@layout/fragment_salah_tracker" />
+
+    <!-- Settings -->
+    <fragment
+        android:id="@+id/settings_dest"
+        android:name="com.islamichub.feature.profile.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings" />
 
     <!-- ============ Feature destinations ============ -->
 
+    <fragment android:id="@+id/quran_dest" android:name="com.islamichub.feature.quran.QuranFragment" android:label="@string/section_quran" tools:layout="@layout/fragment_quran" />
     <fragment android:id="@+id/hadith_dest" android:name="com.islamichub.feature.hadith.HadithFragment" android:label="@string/section_hadith" tools:layout="@layout/fragment_hadith" />
     <fragment android:id="@+id/dua_dest" android:name="com.islamichub.feature.dua.DuaFragment" android:label="@string/section_dua" tools:layout="@layout/fragment_dua" />
     <fragment android:id="@+id/zikr_dest" android:name="com.islamichub.feature.zikr.ZikrFragment" android:label="@string/section_zikr" tools:layout="@layout/fragment_zikr" />
@@ -73,7 +86,6 @@
     <fragment android:id="@+id/questions_dest" android:name="com.islamichub.feature.questions.QuestionsFragment" android:label="@string/section_questions" tools:layout="@layout/fragment_questions" />
     <fragment android:id="@+id/bookmarks_dest" android:name="com.islamichub.feature.bookmarks.BookmarksFragment" android:label="@string/section_bookmarks" tools:layout="@layout/fragment_bookmarks" />
     <fragment android:id="@+id/search_dest" android:name="com.islamichub.feature.search.SearchFragment" android:label="@string/action_search" tools:layout="@layout/fragment_search" />
-    <fragment android:id="@+id/settings_dest" android:name="com.islamichub.feature.profile.SettingsFragment" android:label="@string/section_settings" tools:layout="@layout/fragment_settings" />
 
     <!-- New feature destinations -->
     <fragment android:id="@+id/audio_dest" android:name="com.islamichub.feature.audio.AudioFragment" android:label="নামাজ অডিও" tools:layout="@layout/fragment_generic_list" />
