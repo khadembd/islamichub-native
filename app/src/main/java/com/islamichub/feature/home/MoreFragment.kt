@@ -38,7 +38,7 @@ class MoreFragment : Fragment() {
                 MoreItem(R.drawable.ic_zikr,     "জিকির / তসবিহ",   "৬ ধরনের জিকির • কাউন্টার") { goto(R.id.zikr_dest) },
                 MoreItem(R.drawable.ic_star,     "আসমাউল হুসনা",   "৯৯টি নাম • অর্থ ও আমল")    { goto(R.id.asmaul_husna_dest) },
                 MoreItem(R.drawable.ic_qibla,    "কিবলা কম্পাস",    "সেন্সর + লোকেশন")          { goto(R.id.qibla_dest) },
-                MoreItem(R.drawable.ic_prayer,   "নামাজের সময়",    "৫ ওয়াক্ত • হিজরি তারিখ")  { goto(R.id.prayer_dest) },
+                MoreItem(R.drawable.ic_prayer,   "নামাজের সময়",    "৫ ওয়াক্ত • হিজরি তারিখ")  { goto(R.id.daily_dest) },
                 MoreItem(R.drawable.ic_bookmark, "বুকমার্ক",         "সংরক্ষিত আয়াত/হাদিস")     { goto(R.id.bookmarks_dest) },
                 MoreItem(R.drawable.ic_search,   "খুঁজুন",            "সব বিষয় • একসাথে")         { goto(R.id.search_dest) },
                 MoreItem(R.drawable.ic_story,    "ইসলামিক গল্প",   "নবী • খলিফা • মেরাজ")     { goto(R.id.stories_dest) },
